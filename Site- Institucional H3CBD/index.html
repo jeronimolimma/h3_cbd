@@ -1,0 +1,2511 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>H3CBD | Bem-estar Natural e Premium</title>
+    <meta name="description" content="H3CBD - Produtos de CBD de alta qualidade para o seu bem-estar e equilíbrio natural.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            light: '#fdba74',
+                            DEFAULT: '#f97316',
+                            dark: '#c2410c',
+                            deep: '#082032'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Animations */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .hero-bg {
+            background-color: #082032;
+            background-image: linear-gradient(rgba(8, 32, 50, 0.75), rgba(8, 32, 50, 0.6)), url('https://images.unsplash.com/photo-1631541909061-71e349d1f203?q=80&w=1920&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        @keyframes pulse-custom {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        .animate-pulse-custom {
+            animation: pulse-custom 2s infinite ease-in-out;
+        }
+        .animate-pulse-custom:hover {
+            animation: none;
+        }
+
+        /* Ripple Effect */
+        .ripple-btn {
+            position: relative;
+            overflow: hidden;
+        }
+        span.ripple {
+            position: absolute;
+            border-radius: 50%;
+            transform: scale(0);
+            animation: ripple 0.6s linear;
+            background-color: rgba(255, 255, 255, 0.4);
+            pointer-events: none;
+        }
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        /* Shake Animation */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+        .animate-shake {
+            animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+        }
+
+        /* Print Styles for Guide */
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            #printable-guide, #printable-guide *, #printable-terms, #printable-terms * {
+                visibility: visible;
+            }
+            #printable-guide, #printable-terms {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                margin: 0;
+                padding: 0;
+                background: white !important;
+                color: black !important;
+                box-shadow: none !important;
+                z-index: 9999;
+            }
+            .no-print {
+                display: none !important;
+            }
+            /* Ensure text contrast in print */
+            .text-gray-900, .text-gray-800, .text-gray-700, .text-gray-600 {
+                color: black !important;
+            }
+            .bg-gray-50 {
+                background-color: #f9fafb !important;
+                -webkit-print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-700 antialiased bg-gray-50 dark:bg-gray-900 dark:text-gray-300 transition-colors duration-300">
+
+    <!-- Preloader -->
+    <div id="preloader" class="fixed inset-0 z-[110] bg-brand-deep flex items-center justify-center transition-opacity duration-700">
+        <div class="absolute top-0 left-0 w-full h-1 bg-gray-800/50">
+            <div id="preloader-progress" class="h-full bg-brand w-0"></div>
+        </div>
+        <div id="preloader-percent" class="absolute top-3 right-4 text-brand font-bold text-sm font-mono">0%</div>
+        
+        <div class="text-center space-y-4 animate-pulse">
+            <i class="fa-solid fa-leaf text-brand text-5xl mb-4"></i>
+            <h2 class="text-2xl md:text-4xl font-heading font-bold text-white tracking-wider leading-relaxed">
+                Uma vida <span class="text-brand">+ Saudável</span><br>
+                <span class="text-brand">+ Feliz</span> + Humana
+            </h2>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-500 ease-in-out bg-transparent py-4">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <a href="#" class="text-2xl font-heading font-bold text-white tracking-wider flex items-center gap-2">
+                <i class="fa-solid fa-leaf text-brand-light"></i> H3CBD
+            </a>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#home" class="text-white hover:text-brand-light transition font-medium">Início</a>
+                <a href="#sobre" class="text-white hover:text-brand-light transition font-medium">Sobre</a>
+                <a href="#beneficios" class="text-white hover:text-brand-light transition font-medium">Benefícios</a>
+                <a href="#produtos" class="text-white hover:text-brand-light transition font-medium">Produtos</a>
+                <a href="#medicos" class="text-white hover:text-brand-light transition font-medium">Parceiros</a>
+                <a href="#contato" class="bg-brand text-white px-5 py-2 rounded-full hover:bg-brand-dark transition shadow-lg font-medium ripple-btn">Fale Conosco</a>
+                <button id="theme-toggle" class="text-white hover:text-brand-light transition focus:outline-none ripple-btn w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-white text-2xl focus:outline-none">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-deep absolute top-full left-0 w-full shadow-xl">
+            <div class="flex flex-col px-6 py-4 space-y-4">
+                <a href="#home" class="text-white hover:text-brand-light">Início</a>
+                <a href="#sobre" class="text-white hover:text-brand-light">Sobre</a>
+                <a href="#beneficios" class="text-white hover:text-brand-light">Benefícios</a>
+                <a href="#produtos" class="text-white hover:text-brand-light">Produtos</a>
+                <a href="#medicos" class="text-white hover:text-brand-light">Parceiros</a>
+                <a href="#contato" class="text-brand-light font-bold">Fale Conosco</a>
+                <button id="theme-toggle-mobile" class="text-white hover:text-brand-light text-left font-medium flex items-center gap-2 w-full">
+                    <i class="fa-solid fa-moon w-5"></i> Modo Escuro
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="home" class="hero-bg h-screen flex items-center justify-center text-center px-6 relative">
+        <div class="max-w-4xl mx-auto text-white fade-in-up">
+            <span class="uppercase tracking-[0.2em] text-sm font-bold text-brand-light mb-4 block">Qualidade Premium</span>
+            <h1 class="text-5xl md:text-7xl font-heading font-bold mb-6 leading-tight">
+                Equilíbrio Natural para <br/> sua Vida
+            </h1>
+            <p class="text-lg md:text-xl text-gray-200 mb-10 max-w-2xl mx-auto font-light">
+                Descubra o poder do CBD com a H3CBD. Produtos desenvolvidos com ciência e pureza para transformar o seu bem-estar diário.
+            </p>
+            <div class="flex flex-col md:flex-row gap-4 justify-center">
+                <a href="#produtos" class="bg-brand hover:bg-brand-dark text-white px-8 py-4 rounded-full font-bold transition transform hover:scale-105 shadow-lg ripple-btn">
+                    Ver Produtos
+                </a>
+                <a href="#sobre" class="bg-transparent border-2 border-white hover:bg-white hover:text-brand-deep text-white px-8 py-4 rounded-full font-bold transition ripple-btn">
+                    Nossa História
+                </a>
+            </div>
+        </div>
+        
+        <!-- Scroll Down Indicator -->
+        <a href="#sobre" class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce text-white cursor-pointer">
+            <i class="fa-solid fa-chevron-down text-2xl"></i>
+        </a>
+    </header>
+
+    <!-- Sobre Nós -->
+    <section id="sobre" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2 fade-in-up">
+                    <picture>
+                        <!-- Substitua o srcset abaixo pelo caminho local: ex: img/laboratorio.webp -->
+                        <source srcset="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?q=80&w=1000&fm=webp&fit=crop" type="image/webp">
+                        <!-- Substitua o src abaixo pelo caminho local: ex: img/laboratorio.jpg -->
+                        <img src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?q=80&w=1000&fm=jpg&fit=crop" alt="Laboratório H3CBD" class="rounded-2xl shadow-2xl w-full object-cover h-[500px]">
+                    </picture>
+                </div>
+                <div class="md:w-1/2 fade-in-up">
+                    <h2 class="text-brand font-bold uppercase tracking-wide mb-2">Sobre a H3CBD</h2>
+                    <h3 class="text-4xl font-heading font-bold text-gray-900 mb-6">Ciência e Natureza em Harmonia</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        Na H3CBD, acreditamos que a natureza possui as chaves para uma vida mais saudável. Nossa missão é fornecer produtos de CBD da mais alta pureza, extraídos de cânhamo cultivado organicamente e testados rigorosamente em laboratório.
+                    </p>
+                    <p class="text-gray-600 mb-8 leading-relaxed">
+                        Combinamos métodos de extração avançados com transparência total, garantindo que cada gota de nossos óleos e cada produto entregue a eficácia que você merece.
+                    </p>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center gap-3 text-gray-700">
+                            <i class="fa-solid fa-check-circle text-brand"></i> 100% Orgânico e Natural
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-700">
+                            <i class="fa-solid fa-check-circle text-brand"></i> Testado em Laboratório Terceirizado
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-700">
+                            <i class="fa-solid fa-check-circle text-brand"></i> Sem THC (Não Psicoativo)
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefícios -->
+    <section id="beneficios" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16 fade-in-up">
+                <h2 class="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-4">Por que escolher CBD?</h2>
+                <p class="text-gray-600">O Canabidiol interage com o sistema endocanabinoide do corpo para promover homeostase e equilíbrio.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition transform hover:-translate-y-2 fade-in-up">
+                    <div class="w-16 h-16 bg-brand-light/20 rounded-full flex items-center justify-center mb-6 text-brand-dark text-2xl">
+                        <i class="fa-solid fa-moon"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-900">Melhora do Sono</h3>
+                    <p class="text-gray-600 text-sm">Ajuda a regular os ciclos de sono, proporcionando noites mais tranquilas e restauradoras.</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition transform hover:-translate-y-2 fade-in-up" style="transition-delay: 100ms;">
+                    <div class="w-16 h-16 bg-brand-light/20 rounded-full flex items-center justify-center mb-6 text-brand-dark text-2xl">
+                        <i class="fa-solid fa-brain"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-900">Foco e Clareza</h3>
+                    <p class="text-gray-600 text-sm">Reduz a ansiedade diária e o estresse mental, permitindo maior foco nas suas atividades.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition transform hover:-translate-y-2 fade-in-up" style="transition-delay: 200ms;">
+                    <div class="w-16 h-16 bg-brand-light/20 rounded-full flex items-center justify-center mb-6 text-brand-dark text-2xl">
+                        <i class="fa-solid fa-person-running"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-900">Recuperação Física</h3>
+                    <p class="text-gray-600 text-sm">Propriedades anti-inflamatórias que auxiliam na recuperação muscular após exercícios.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Produtos -->
+    <section id="produtos" class="py-20 bg-brand-deep text-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12 fade-in-up">
+                <h2 class="text-brand-light font-bold uppercase tracking-wide mb-2">Nossa Loja</h2>
+                <h3 class="text-4xl font-heading font-bold">Catálogo Completo</h3>
+            </div>
+
+            <!-- Filtros de Categoria -->
+            <div class="flex flex-wrap justify-center gap-3 mb-10 fade-in-up" id="product-filters">
+                <button class="filter-btn-prod active px-6 py-2 rounded-full border-2 border-brand-light text-brand-deep bg-brand-light font-bold transition hover:bg-white hover:text-brand-deep hover:border-white ripple-btn" data-category="all">Todos</button>
+                <button class="filter-btn-prod px-6 py-2 rounded-full border-2 border-brand-light text-white font-medium transition hover:bg-brand-light hover:text-brand-deep ripple-btn" data-category="Full Spectrum">Full Spectrum</button>
+                <button class="filter-btn-prod px-6 py-2 rounded-full border-2 border-brand-light text-white font-medium transition hover:bg-brand-light hover:text-brand-deep ripple-btn" data-category="Broad Spectrum">Broad Spectrum</button>
+                <button class="filter-btn-prod px-6 py-2 rounded-full border-2 border-brand-light text-white font-medium transition hover:bg-brand-light hover:text-brand-deep ripple-btn" data-category="Muscle">Muscle</button>
+                <button class="filter-btn-prod px-6 py-2 rounded-full border-2 border-brand-light text-white font-medium transition hover:bg-brand-light hover:text-brand-deep ripple-btn" data-category="Relax">Relax</button>
+                <button class="filter-btn-prod px-6 py-2 rounded-full border-2 border-brand-light text-white font-medium transition hover:bg-brand-light hover:text-brand-deep ripple-btn" data-category="Gomitas">Gomitas</button>
+                <button class="filter-btn-prod px-6 py-2 rounded-full border-2 border-brand-light text-white font-medium transition hover:bg-brand-light hover:text-brand-deep ripple-btn" data-category="Vitality">Vitality</button>
+            </div>
+
+            <!-- Filtro de Preço -->
+            <div class="max-w-md mx-auto mb-12 fade-in-up px-4">
+                <div class="flex justify-between items-center mb-2 text-brand-light font-medium">
+                    <label for="price-range">Preço Máximo:</label>
+                    <span id="price-display" class="font-bold text-white">R$ 500,00</span>
+                </div>
+                <input type="range" id="price-range" min="0" max="500" step="10" value="500" class="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-brand">
+                
+                <div class="text-center mt-6">
+                    <button id="clear-filters-btn" class="text-sm text-gray-400 hover:text-white transition flex items-center justify-center gap-2 mx-auto border border-gray-600 px-4 py-2 rounded-full hover:border-brand hover:bg-brand/10 ripple-btn">
+                        <i class="fa-solid fa-filter-circle-xmark"></i> Limpar Filtros
+                    </button>
+                </div>
+            </div>
+
+            <!-- Grid de Produtos -->
+            <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 fade-in-up">
+                <!-- Produtos serão inseridos via JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Depoimentos (Carousel) -->
+    <section id="depoimentos" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12 fade-in-up">
+                <h2 class="text-brand font-bold uppercase tracking-wide mb-2">Depoimentos</h2>
+                <h3 class="text-4xl font-heading font-bold text-gray-900">O que dizem nossos clientes</h3>
+            </div>
+
+            <div class="relative max-w-4xl mx-auto fade-in-up">
+                <!-- Carousel Wrapper -->
+                <div class="overflow-hidden rounded-2xl shadow-xl bg-white relative">
+                    <div id="carousel-track" class="flex transition-transform duration-500 ease-in-out">
+                        <!-- Slide 1 -->
+                        <div class="w-full flex-shrink-0 p-8 md:p-12 text-center">
+                            <div class="text-brand text-4xl mb-6"><i class="fa-solid fa-quote-left"></i></div>
+                            <p class="text-xl text-gray-600 italic mb-6">"O óleo Full Spectrum mudou minhas noites de sono. Acordo renovada e sem aquela sensação de cansaço."</p>
+                            <div class="font-bold text-gray-900">Mariana Silva</div>
+                            <div class="text-sm text-gray-500">São Paulo, SP</div>
+                        </div>
+                        <!-- Slide 2 -->
+                        <div class="w-full flex-shrink-0 p-8 md:p-12 text-center">
+                            <div class="text-brand text-4xl mb-6"><i class="fa-solid fa-quote-left"></i></div>
+                            <p class="text-xl text-gray-600 italic mb-6">"Uso o creme muscular após o treino de CrossFit e a recuperação é incrível. Recomendo demais!"</p>
+                            <div class="font-bold text-gray-900">Carlos Eduardo</div>
+                            <div class="text-sm text-gray-500">Rio de Janeiro, RJ</div>
+                        </div>
+                        <!-- Slide 3 -->
+                        <div class="w-full flex-shrink-0 p-8 md:p-12 text-center">
+                            <div class="text-brand text-4xl mb-6"><i class="fa-solid fa-quote-left"></i></div>
+                            <p class="text-xl text-gray-600 italic mb-6">"As gummies são deliciosas e me ajudam a manter o foco no trabalho durante tardes estressantes."</p>
+                            <div class="font-bold text-gray-900">Fernanda Costa</div>
+                            <div class="text-sm text-gray-500">Curitiba, PR</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <button id="prev-slide" class="absolute top-1/2 left-4 -translate-y-1/2 bg-white text-brand hover:bg-brand hover:text-white w-10 h-10 rounded-full shadow-lg flex items-center justify-center transition z-10 focus:outline-none ripple-btn">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <button id="next-slide" class="absolute top-1/2 right-4 -translate-y-1/2 bg-white text-brand hover:bg-brand hover:text-white w-10 h-10 rounded-full shadow-lg flex items-center justify-center transition z-10 focus:outline-none ripple-btn">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Médicos Parceiros -->
+    <section id="medicos" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12 fade-in-up">
+                <h2 class="text-brand font-bold uppercase tracking-wide mb-2">Rede Credenciada</h2>
+                <h3 class="text-4xl font-heading font-bold text-gray-900">Médicos Parceiros</h3>
+                <p class="text-gray-600 mt-4 max-w-2xl mx-auto">Contamos com uma rede de especialistas prescritores prontos para atender você com tratamentos personalizados.</p>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="max-w-3xl mx-auto mb-10 flex flex-col md:flex-row gap-4 fade-in-up">
+                <!-- Search Input -->
+                <div class="relative flex-1">
+                    <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                        <i class="fa-solid fa-search text-gray-400"></i>
+                    </div>
+                    <input type="text" id="search-medicos" class="block w-full pl-12 pr-4 py-3 border border-gray-200 rounded-full leading-5 bg-gray-50 placeholder-gray-500 focus:outline-none focus:bg-white focus:border-brand focus:ring-1 focus:ring-brand sm:text-sm transition duration-150 ease-in-out shadow-sm" placeholder="Buscar por nome...">
+                </div>
+                
+                <!-- Specialty Select -->
+                <div class="relative md:w-1/3">
+                    <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                        <i class="fa-solid fa-user-doctor text-gray-400"></i>
+                    </div>
+                    <select id="filter-specialty" class="block w-full pl-12 pr-10 py-3 border border-gray-200 rounded-full leading-5 bg-gray-50 text-gray-600 focus:outline-none focus:bg-white focus:border-brand focus:ring-1 focus:ring-brand sm:text-sm appearance-none cursor-pointer transition shadow-sm">
+                        <option value="">Todas Especialidades</option>
+                        <option value="Neurologista">Neurologista</option>
+                        <option value="Psiquiatra">Psiquiatra</option>
+                        <option value="Geriatra">Geriatra</option>
+                        <option value="Reumatologista">Reumatologista</option>
+                    </select>
+                    <div class="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none">
+                        <i class="fa-solid fa-chevron-down text-gray-400 text-xs"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grid de Médicos -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 fade-in-up">
+                
+                <!-- Card Médico 1 -->
+                <div class="bg-gray-50 rounded-2xl p-6 text-center hover:shadow-lg transition duration-300 border border-gray-100 group">
+                    <div class="w-24 h-24 mx-auto rounded-full overflow-hidden mb-4 border-4 border-white shadow-md">
+                        <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?q=80&w=300&auto=format&fit=crop" alt="Dr. Roberto Alves" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="font-bold text-lg text-gray-900">Dr. Roberto Alves</h4>
+                    <p class="text-brand text-sm font-bold uppercase mb-3">Neurologista</p>
+                    <p class="text-gray-600 text-sm mb-4 leading-relaxed line-clamp-3">Especialista em tratamentos integrativos para dor crônica e enxaqueca refratária.</p>
+                    <div class="flex justify-center gap-3">
+                        <a href="#" class="w-8 h-8 rounded-full bg-white text-gray-600 hover:text-brand hover:shadow-md flex items-center justify-center transition"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-white text-gray-600 hover:text-brand hover:shadow-md flex items-center justify-center transition"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <button class="w-8 h-8 rounded-full bg-white text-gray-600 hover:text-brand hover:shadow-md flex items-center justify-center transition appointment-btn" data-doctor="Dr. Roberto Alves" title="Agendar Consulta"><i class="fa-solid fa-calendar-check"></i></button>
+                    </div>
+                </div>
+
+                <!-- Card Médico 2 -->
+                <div class="bg-gray-50 rounded-2xl p-6 text-center hover:shadow-lg transition duration-300 border border-gray-100 group">
+                    <div class="w-24 h-24 mx-auto rounded-full overflow-hidden mb-4 border-4 border-white shadow-md">
+                        <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?q=80&w=300&auto=format&fit=crop" alt="Dra. Juliana Costa" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="font-bold text-lg text-gray-900">Dra. Juliana Costa</h4>
+                    <p class="text-brand text-sm font-bold uppercase mb-3">Psiquiatra</p>
+                    <p class="text-gray-600 text-sm mb-4 leading-relaxed line-clamp-3">Foco em ansiedade, depressão e transtornos do sono com abordagem humanizada.</p>
+                    <div class="flex justify-center gap-3">
+                        <a href="#" class="w-8 h-8 rounded-full bg-white text-gray-600 hover:text-brand hover:shadow-md flex items-center justify-center transition"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-white text-gray-600 hover:text-brand hover:shadow-md flex items-center justify-center transition"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <button class="w-8 h-8 rounded-full bg-white text-gray-600 hover:text-brand hover:shadow-md flex items-center justify-center transition appointment-btn" data-doctor="Dra. Juliana Costa" title="Agendar Consulta"><i class="fa-solid fa-calendar-check"></i></button>
+                    </div>
+                </div>
+
+                <!-- Card Médico 3 -->
+                <div class="bg-gray-50 rounded-2xl p-6 text-center hover:shadow-lg transition duration-300 border border-gray-100 group">
+                    <div class="w-24 h-24 mx-auto rounded-full overflow-hidden mb-4 border-4 border-white shadow-md">
+                        <img src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?q=80&w=300&auto=format&fit=crop" alt="Dr. Marcos Silva" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="font-bold text-lg text-gray-900">Dr. Marcos Silva</h4>
+                    <p class="text-brand text-sm font-bold uppercase mb-3">Geriatra</p>
+                    <p class="text-gray-600 text-sm mb-4 leading-relaxed line-clamp-3">Promovendo qualidade de vida e longevidade saudável para a terceira idade.</p>
+                    <div class="flex justify-center gap-3">
+                        <a href="#" class="w-8 h-8 rounded-full bg-white text-gray-600 hover:text-brand hover:shadow-md flex items-center justify-center transition"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-white text-gray-600 hover:text-brand hover:shadow-md flex items-center justify-center transition"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <button class="w-8 h-8 rounded-full bg-white text-gray-600 hover:text-brand hover:shadow-md flex items-center justify-center transition appointment-btn" data-doctor="Dr. Marcos Silva" title="Agendar Consulta"><i class="fa-solid fa-calendar-check"></i></button>
+                    </div>
+                </div>
+
+                <!-- Card Médico 4 (Adicione mais blocos como este para chegar aos 60) -->
+                <div class="bg-gray-50 rounded-2xl p-6 text-center hover:shadow-lg transition duration-300 border border-gray-100 group">
+                    <div class="w-24 h-24 mx-auto rounded-full overflow-hidden mb-4 border-4 border-white shadow-md">
+                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=300&auto=format&fit=crop" alt="Dra. Camila Souza" class="w-full h-full object-cover">
+                    </div>
+                    <h4 class="font-bold text-lg text-gray-900">Dra. Camila Souza</h4>
+                    <p class="text-brand text-sm font-bold uppercase mb-3">Reumatologista</p>
+                    <p class="text-gray-600 text-sm mb-4 leading-relaxed line-clamp-3">Tratamento de doenças autoimunes e fibromialgia com terapias complementares.</p>
+                    <div class="flex justify-center gap-3">
+                        <a href="#" class="w-8 h-8 rounded-full bg-white text-gray-600 hover:text-brand hover:shadow-md flex items-center justify-center transition"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-white text-gray-600 hover:text-brand hover:shadow-md flex items-center justify-center transition"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <button class="w-8 h-8 rounded-full bg-white text-gray-600 hover:text-brand hover:shadow-md flex items-center justify-center transition appointment-btn" data-doctor="Dra. Camila Souza" title="Agendar Consulta"><i class="fa-solid fa-calendar-check"></i></button>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="text-center mt-12">
+                <button id="load-more-medicos" class="inline-flex items-center gap-2 text-brand font-bold hover:text-brand-dark transition border-b-2 border-brand pb-1 ripple-btn">
+                    Ver lista completa de especialistas <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+
+            <!-- Banner Seja Parceiro -->
+            <div class="mt-16 bg-brand-deep rounded-3xl p-8 md:p-12 text-center relative overflow-hidden fade-in-up">
+                <div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+                    <i class="fa-solid fa-user-doctor text-9xl absolute -top-10 -left-10 text-white"></i>
+                    <i class="fa-solid fa-hand-holding-medical text-9xl absolute -bottom-10 -right-10 text-white"></i>
+                </div>
+                
+                <div class="relative z-10">
+                    <h3 class="text-3xl font-heading font-bold text-white mb-4">Você é médico prescritor?</h3>
+                    <p class="text-gray-300 mb-8 max-w-2xl mx-auto text-lg">
+                        Junte-se à nossa rede de especialistas e ofereça tratamentos de ponta com CBD de alta qualidade para seus pacientes. Oferecemos suporte técnico e material científico exclusivo.
+                    </p>
+                    <button id="open-doctor-modal-btn" class="inline-flex items-center bg-white text-brand-deep hover:bg-brand-light font-bold py-4 px-8 rounded-full transition shadow-lg ripple-btn gap-2">
+                        <i class="fa-brands fa-whatsapp text-xl"></i> Quero ser Parceiro
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter / Contato -->
+    <section id="contato" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="bg-gray-100 rounded-3xl p-8 md:p-16 text-center fade-in-up">
+                <h2 class="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-4">Junte-se à Comunidade H3CBD</h2>
+                <p class="text-gray-600 mb-8 max-w-2xl mx-auto">Receba novidades, ofertas exclusivas e conteúdos educativos sobre saúde e bem-estar diretamente no seu e-mail.</p>
+                
+                <form class="flex flex-col md:flex-row gap-4 max-w-lg mx-auto" onsubmit="validateNewsletter(event)" novalidate>
+                    <input type="email" placeholder="Seu melhor e-mail" class="flex-1 px-6 py-4 rounded-full border border-gray-300 focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand" required>
+                    <button type="submit" class="bg-brand hover:bg-brand-dark text-white px-8 py-4 rounded-full font-bold transition shadow-lg ripple-btn">Falar com Especialista</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Legislação e Acesso -->
+    <section id="legislacao" class="py-20 bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 fade-in-up">
+                <h2 class="text-brand font-bold uppercase tracking-wide mb-2">Legalidade e Acesso</h2>
+                <h3 class="text-4xl font-heading font-bold text-gray-900 dark:text-white">Como iniciar seu tratamento</h3>
+                <p class="text-gray-600 dark:text-gray-300 mt-4 max-w-3xl mx-auto">
+                    O uso de produtos à base de Cannabis para fins medicinais é regulamentado pela ANVISA no Brasil (RDC 660). O processo é 100% legal e seguro.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <!-- Passo a Passo -->
+                <div class="space-y-8 fade-in-up">
+                    <div class="flex gap-6">
+                        <div class="flex-shrink-0 w-12 h-12 rounded-full bg-brand text-white flex items-center justify-center font-bold text-xl shadow-lg">1</div>
+                        <div>
+                            <h4 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Consulta Médica</h4>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
+                                Agende uma consulta com um médico prescritor. Ele avaliará seu caso e emitirá a <strong>Receita Médica</strong> (Receita de Controle Especial ou Simples, dependendo da concentração) contendo o nome do paciente, produto, posologia, data e assinatura.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex gap-6">
+                        <div class="flex-shrink-0 w-12 h-12 rounded-full bg-brand text-white flex items-center justify-center font-bold text-xl shadow-lg">2</div>
+                        <div>
+                            <h4 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Cadastro na ANVISA</h4>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
+                                Acesse o portal do Governo Federal (Gov.br) e preencha o formulário de solicitação de importação excepcional de Canabidiol. É gratuito e geralmente automático.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex gap-6">
+                        <div class="flex-shrink-0 w-12 h-12 rounded-full bg-brand text-white flex items-center justify-center font-bold text-xl shadow-lg">3</div>
+                        <div>
+                            <h4 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Autorização e Compra</h4>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
+                                Com a autorização emitida pela ANVISA em mãos, você pode realizar a compra do produto prescrito aqui na H3CBD. Nossa equipe auxilia no envio da documentação para o desembaraço aduaneiro.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card de Documentação e Modelo -->
+                <div class="bg-white dark:bg-gray-800 rounded-3xl p-8 border border-gray-100 dark:border-gray-700 shadow-xl fade-in-up">
+                    <h4 class="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-3">
+                        <i class="fa-solid fa-file-medical text-brand"></i> Documentação Exigida
+                    </h4>
+                    
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center gap-3 text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-700 p-3 rounded-lg shadow-sm">
+                            <i class="fa-solid fa-check text-brand"></i> Receita Médica (atualizada)
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-700 p-3 rounded-lg shadow-sm">
+                            <i class="fa-solid fa-check text-brand"></i> Documento de Identidade (RG/CNH)
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-700 dark:text-gray-300 bg-gray-50 dark:bg-gray-700 p-3 rounded-lg shadow-sm">
+                            <i class="fa-solid fa-check text-brand"></i> Comprovante de Residência
+                        </li>
+                    </ul>
+
+                    <div class="bg-brand/10 rounded-xl p-6 border border-brand/20">
+                        <h5 class="font-bold text-brand-dark dark:text-brand-light mb-2 text-sm uppercase tracking-wide">Modelo de Receita</h5>
+                        <p class="text-xs text-gray-600 dark:text-gray-300 mb-4">
+                            A receita deve conter obrigatoriamente: Nome do Paciente, Nome do Produto (H3CBD...), Posologia Diária, Data, Assinatura e Carimbo do Médico com CRM.
+                        </p>
+                        <a href="#" id="open-guide-btn" class="inline-flex items-center justify-center w-full bg-brand hover:bg-brand-dark text-white font-bold py-3 rounded-lg transition shadow-md ripple-btn gap-2">
+                            <i class="fa-solid fa-download"></i> Baixar Guia Completo PDF
+                        </a>
+                        <button id="copy-prescription-btn" class="mt-3 w-full inline-flex items-center justify-center bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 text-brand-dark dark:text-white font-bold py-3 rounded-lg border border-gray-200 dark:border-gray-600 transition shadow-sm ripple-btn gap-2">
+                            <i class="fa-regular fa-copy"></i> Copiar Modelo de Texto
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog / Artigos Recentes -->
+    <section id="blog" class="py-20 bg-white dark:bg-gray-800 transition-colors duration-300">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12 fade-in-up">
+                <h2 class="text-brand font-bold uppercase tracking-wide mb-2">Conteúdo Educativo</h2>
+                <h3 class="text-4xl font-heading font-bold text-gray-900 dark:text-white">Blog & Notícias</h3>
+                <p class="text-gray-600 dark:text-gray-300 mt-4 max-w-2xl mx-auto">Fique por dentro das últimas descobertas científicas e novidades sobre o universo do Canabidiol.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 fade-in-up">
+                <!-- Article 1 -->
+                <article class="bg-gray-50 dark:bg-gray-700 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300 group border border-gray-100 dark:border-gray-600">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1544367563-12123d8965cd?q=80&w=600&auto=format&fit=crop" alt="Mulher meditando" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                        <span class="absolute top-4 left-4 bg-brand text-white text-xs font-bold px-3 py-1 rounded-full">Saúde Mental</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-xs text-gray-500 dark:text-gray-400 mb-2 flex items-center gap-2">
+                            <i class="fa-regular fa-calendar"></i> 15 Out, 2023
+                        </div>
+                        <h4 class="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-brand transition">CBD e Ansiedade: O que diz a ciência?</h4>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm mb-4 line-clamp-3">Estudos recentes mostram como o canabidiol atua nos receptores de serotonina para reduzir o estresse diário e promover calma.</p>
+                        <button class="inline-flex items-center text-brand font-bold hover:text-brand-dark transition text-sm ripple-btn open-blog-btn" data-index="0">Ler artigo completo <i class="fa-solid fa-arrow-right ml-2"></i></button>
+                    </div>
+                </article>
+
+                <!-- Article 2 -->
+                <article class="bg-gray-50 dark:bg-gray-700 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300 group border border-gray-100 dark:border-gray-600">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1552674605-469523170273?q=80&w=600&auto=format&fit=crop" alt="Pessoa correndo" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                        <span class="absolute top-4 left-4 bg-brand text-white text-xs font-bold px-3 py-1 rounded-full">Bem-estar Físico</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-xs text-gray-500 dark:text-gray-400 mb-2 flex items-center gap-2">
+                            <i class="fa-regular fa-calendar"></i> 22 Out, 2023
+                        </div>
+                        <h4 class="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-brand transition">Guia Completo: CBD para Dores Crônicas</h4>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm mb-4 line-clamp-3">Entenda como as propriedades anti-inflamatórias do CBD podem auxiliar no tratamento de dores musculares e articulares.</p>
+                        <button class="inline-flex items-center text-brand font-bold hover:text-brand-dark transition text-sm ripple-btn open-blog-btn" data-index="1">Ler artigo completo <i class="fa-solid fa-arrow-right ml-2"></i></button>
+                    </div>
+                </article>
+
+                <!-- Article 3 -->
+                <article class="bg-gray-50 dark:bg-gray-700 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300 group border border-gray-100 dark:border-gray-600">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=600&auto=format&fit=crop" alt="Skincare natural" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                        <span class="absolute top-4 left-4 bg-brand text-white text-xs font-bold px-3 py-1 rounded-full">Estética</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-xs text-gray-500 dark:text-gray-400 mb-2 flex items-center gap-2">
+                            <i class="fa-regular fa-calendar"></i> 05 Nov, 2023
+                        </div>
+                        <h4 class="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-brand transition">CBD na Rotina de Skincare</h4>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm mb-4 line-clamp-3">Descubra os benefícios antioxidantes do CBD para a pele, ajudando no controle da oleosidade e prevenção de acne.</p>
+                        <button class="inline-flex items-center text-brand font-bold hover:text-brand-dark transition text-sm ripple-btn open-blog-btn" data-index="2">Ler artigo completo <i class="fa-solid fa-arrow-right ml-2"></i></button>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ (Perguntas Frequentes) -->
+    <section id="faq" class="py-20 bg-white dark:bg-gray-800 transition-colors duration-300">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12 fade-in-up">
+                <h2 class="text-brand font-bold uppercase tracking-wide mb-2">Dúvidas?</h2>
+                <h3 class="text-4xl font-heading font-bold text-gray-900">Perguntas Frequentes</h3>
+            </div>
+
+            <div class="max-w-3xl mx-auto space-y-4 fade-in-up">
+                <!-- FAQ Item 1 -->
+                <div class="bg-gray-50 dark:bg-gray-700 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-600 overflow-hidden">
+                    <button class="faq-btn w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none hover:bg-gray-100 dark:hover:bg-gray-600 transition">
+                        <span class="font-bold text-gray-900 text-lg">O que é CBD e para que serve?</span>
+                        <i class="fa-solid fa-chevron-down text-brand transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                        <div class="px-6 pb-6 text-gray-600 leading-relaxed border-t border-gray-100">
+                            O Canabidiol (CBD) é um composto natural encontrado na planta Cannabis sativa. Diferente do THC, ele não possui efeitos psicoativos. É amplamente utilizado para auxiliar no alívio da ansiedade, melhora do sono, dores crônicas e inflamações, promovendo o equilíbrio natural do corpo (homeostase).
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="bg-gray-50 dark:bg-gray-700 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-600 overflow-hidden">
+                    <button class="faq-btn w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none hover:bg-gray-100 dark:hover:bg-gray-600 transition">
+                        <span class="font-bold text-gray-900 text-lg">Preciso de receita médica para comprar?</span>
+                        <i class="fa-solid fa-chevron-down text-brand transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                        <div class="px-6 pb-6 text-gray-600 leading-relaxed border-t border-gray-100">
+                            No Brasil, a compra de produtos à base de Cannabis requer prescrição médica e autorização da ANVISA para importação. Nossa equipe oferece suporte completo nesse processo, conectando você a médicos prescritores e auxiliando na documentação.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="bg-gray-50 dark:bg-gray-700 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-600 overflow-hidden">
+                    <button class="faq-btn w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none hover:bg-gray-100 dark:hover:bg-gray-600 transition">
+                        <span class="font-bold text-gray-900 text-lg">Os produtos têm garantia de qualidade?</span>
+                        <i class="fa-solid fa-chevron-down text-brand transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                        <div class="px-6 pb-6 text-gray-600 leading-relaxed border-t border-gray-100">
+                            Sim. Todos os produtos H3CBD passam por rigorosos testes em laboratórios terceirizados para garantir pureza, potência e ausência de contaminantes. Disponibilizamos os laudos (COA) de todos os lotes para consulta.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-16 border-t border-gray-800 font-sans">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <!-- Brand & Social -->
+                <div class="space-y-6">
+                    <a href="#home" class="text-3xl font-heading font-bold text-white tracking-wider flex items-center gap-2">
+                        <i class="fa-solid fa-leaf text-brand"></i> H3CBD
+                    </a>
+                    <p class="text-sm leading-relaxed text-gray-400">
+                        Líder em produtos de CBD premium. Nossa missão é proporcionar bem-estar natural com transparência, qualidade e eficácia comprovada.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand hover:text-white transition duration-300 ripple-btn">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand hover:text-white transition duration-300 ripple-btn">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand hover:text-white transition duration-300 ripple-btn">
+                            <i class="fa-brands fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand hover:text-white transition duration-300 ripple-btn">
+                            <i class="fa-brands fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Mapa do Site -->
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-6 relative inline-block">
+                        Mapa do Site
+                        <span class="absolute bottom-0 left-0 w-1/2 h-1 bg-brand rounded-full"></span>
+                    </h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="#home" class="hover:text-brand transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-xs text-brand"></i> Início</a></li>
+                        <li><a href="#sobre" class="hover:text-brand transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-xs text-brand"></i> Sobre Nós</a></li>
+                        <li><a href="#beneficios" class="hover:text-brand transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-xs text-brand"></i> Benefícios</a></li>
+                        <li><a href="#produtos" class="hover:text-brand transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-xs text-brand"></i> Nossa Loja</a></li>
+                        <li><a href="#medicos" class="hover:text-brand transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-xs text-brand"></i> Parceiros</a></li>
+                        <li><a href="#faq" class="hover:text-brand transition flex items-center gap-2"><i class="fa-solid fa-chevron-right text-xs text-brand"></i> FAQ</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contato & Legal -->
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-6 relative inline-block">
+                        Informações
+                        <span class="absolute bottom-0 left-0 w-1/2 h-1 bg-brand rounded-full"></span>
+                    </h4>
+                    <ul class="space-y-4 text-sm">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-location-dot text-brand mt-1"></i>
+                            <span>Av. Paulista, 1000 - Bela Vista<br>São Paulo - SP, 01310-100</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-envelope text-brand"></i>
+                            <a href="mailto:contato@h3cbd.com.br" class="hover:text-brand transition">contato@h3cbd.com.br</a>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-phone text-brand"></i>
+                            <a href="tel:+5511999999999" class="hover:text-brand transition">(11) 99999-9999</a>
+                        </li>
+                    </ul>
+                    <div class="mt-6 pt-6 border-t border-gray-800">
+                        <button id="open-privacy-btn" class="text-xs hover:text-brand transition mr-4">Política de Privacidade</button>
+                        <button id="open-terms-btn" class="text-xs hover:text-brand transition">Termos de Uso</button>
+                    </div>
+                </div>
+
+                <!-- Newsletter -->
+                <div>
+                    <h4 class="text-white font-bold text-lg mb-6 relative inline-block">
+                        Newsletter
+                        <span class="absolute bottom-0 left-0 w-1/2 h-1 bg-brand rounded-full"></span>
+                    </h4>
+                    <p class="text-sm text-gray-400 mb-4">Inscreva-se para receber ofertas exclusivas e novidades sobre CBD.</p>
+                    <form onsubmit="event.preventDefault(); alert('Inscrito com sucesso!');" class="space-y-3">
+                        <div class="relative">
+                            <input type="email" placeholder="Seu e-mail" class="w-full bg-gray-800 text-white border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:border-brand focus:ring-1 focus:ring-brand transition placeholder-gray-500" required>
+                            <i class="fa-solid fa-envelope absolute right-4 top-3.5 text-gray-500"></i>
+                        </div>
+                        <button type="submit" class="w-full bg-brand hover:bg-brand-dark text-white font-bold py-3 rounded-lg transition shadow-lg ripple-btn">
+                            Inscrever-se
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Bottom Footer -->
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="text-xs text-gray-500 text-center md:text-left">
+                    &copy; 2024 H3CBD. Todos os direitos reservados.<br>
+                    CNPJ: 00.000.000/0001-00<br>
+                    <span class="block mt-2 text-gray-600">Desenvolvido por <a href="https://www.linkedin.com/in/jeronimo-lima" target="_blank" class="text-gray-400 hover:text-brand transition font-bold">Jerônimo Lima</a></span>
+                </div>
+                <div class="flex gap-4 text-2xl text-gray-600">
+                    <i class="fa-brands fa-cc-visa hover:text-white transition"></i>
+                    <i class="fa-brands fa-cc-mastercard hover:text-white transition"></i>
+                    <i class="fa-brands fa-cc-amex hover:text-white transition"></i>
+                    <i class="fa-brands fa-pix hover:text-white transition"></i>
+                </div>
+            </div>
+            <div class="mt-6 text-[10px] text-gray-600 text-center leading-tight max-w-4xl mx-auto">
+                As declarações sobre estes produtos não foram avaliadas pela ANVISA. Este produto não se destina a diagnosticar, tratar, curar ou prevenir qualquer doença. Consulte seu médico antes de usar.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cookie Consent Banner -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-gray-800 dark:bg-gray-900 text-white p-4 shadow-2xl transform translate-y-full transition-transform duration-500 ease-in-out z-[80]">
+        <div class="container mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            <p class="text-sm text-gray-300">
+                Este site utiliza cookies para garantir que você obtenha a melhor experiência. Ao continuar, você concorda com nossa <a href="#" class="font-bold text-brand-light hover:underline">Política de Privacidade</a>.
+            </p>
+            <div class="flex gap-3 flex-shrink-0">
+                <button id="accept-cookies" class="bg-brand hover:bg-brand-dark text-white font-bold px-5 py-2 rounded-full transition shadow-lg ripple-btn text-sm">Aceitar</button>
+                <button id="decline-cookies" class="bg-gray-600 hover:bg-gray-500 text-white font-bold px-5 py-2 rounded-full transition shadow-lg ripple-btn text-sm">Recusar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Details Modal -->
+    <div id="product-modal" class="fixed inset-0 z-[60] hidden overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <!-- Background overlay -->
+            <div class="fixed inset-0 bg-gray-900 bg-opacity-75 transition-opacity backdrop-blur-sm" aria-hidden="true" id="modal-overlay"></div>
+
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+
+            <!-- Modal panel -->
+            <div class="inline-block align-bottom bg-white dark:bg-gray-800 rounded-2xl text-left overflow-hidden shadow-2xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full">
+                <div class="bg-white dark:bg-gray-800 px-4 pt-5 pb-4 sm:p-8 sm:pb-4">
+                    <div class="sm:flex sm:items-start">
+                        <div class="mt-3 text-center sm:mt-0 sm:text-left w-full">
+                            <div class="flex justify-between items-start mb-6">
+                                <h3 class="text-2xl leading-6 font-heading font-bold text-gray-900 dark:text-white" id="modal-title">Nome do Produto</h3>
+                                <div class="flex gap-2">
+                                    <button type="button" class="bg-gray-100 dark:bg-gray-700 rounded-full p-2 text-brand hover:text-brand-dark hover:bg-gray-200 dark:hover:bg-gray-600 focus:outline-none transition" id="share-product-btn" title="Compartilhar Produto">
+                                        <i class="fa-solid fa-share-nodes text-xl w-6 h-6 flex items-center justify-center"></i>
+                                    </button>
+                                    <button type="button" class="bg-gray-100 dark:bg-gray-700 rounded-full p-2 text-gray-400 hover:text-gray-500 hover:bg-gray-200 dark:hover:bg-gray-600 focus:outline-none transition" id="close-modal-btn">
+                                        <span class="sr-only">Fechar</span>
+                                        <i class="fa-solid fa-times text-xl w-6 h-6 flex items-center justify-center"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="flex flex-col md:flex-row gap-8">
+                                <div class="md:w-1/2">
+                                    <img id="modal-img" src="" alt="" class="w-full h-64 md:h-80 object-cover rounded-xl shadow-lg">
+                                </div>
+                                <div class="md:w-1/2 flex flex-col justify-between">
+                                    <div>
+                                        <span class="inline-block bg-brand-light/20 text-brand-dark text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide mb-3" id="modal-category">Categoria</span>
+                                        <p class="text-3xl font-bold text-brand-dark mb-6" id="modal-price">R$ 0,00</p>
+                                        
+                                        <div class="mb-4">
+                                            <h4 class="font-bold text-gray-900 dark:text-white text-sm mb-1">Descrição:</h4>
+                                            <p class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed" id="modal-description">Descrição detalhada...</p>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-bold text-gray-900 dark:text-white text-sm mb-1">Ingredientes:</h4>
+                                            <p class="text-xs text-gray-500 dark:text-gray-400 leading-relaxed" id="modal-ingredients">Lista de ingredientes...</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-50 dark:bg-gray-700 px-4 py-4 sm:px-6 sm:flex sm:flex-row-reverse gap-3">
+                    <button type="button" id="modal-buy-btn" class="w-full inline-flex justify-center items-center rounded-full border border-transparent shadow-lg px-6 py-3 bg-[#25D366] text-base font-medium text-white hover:bg-[#20bd5a] focus:outline-none sm:w-auto sm:text-sm transition ripple-btn">
+                        Comprar pelo WhatsApp <i class="fa-brands fa-whatsapp ml-2"></i>
+                    </button>
+                    <button type="button" class="mt-3 w-full inline-flex justify-center rounded-full border border-gray-300 dark:border-gray-600 shadow-sm px-6 py-3 bg-white dark:bg-gray-700 text-base font-medium text-gray-700 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none sm:mt-0 sm:w-auto sm:text-sm transition ripple-btn" id="close-modal-footer-btn">
+                        Continuar Comprando
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Blog Post Modal -->
+    <div id="blog-modal" class="fixed inset-0 z-[60] hidden overflow-y-auto transition-opacity duration-300 opacity-0" aria-labelledby="blog-modal-title" role="dialog" aria-modal="true">
+        <!-- Reading Progress Bar -->
+        <div class="fixed top-0 left-0 w-full h-1.5 z-[70] bg-gray-200 dark:bg-gray-700">
+            <div id="blog-progress-bar" class="h-full bg-brand w-0 transition-all duration-150 ease-out"></div>
+        </div>
+
+        <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 bg-gray-900 bg-opacity-75 transition-opacity backdrop-blur-sm" aria-hidden="true" id="blog-overlay"></div>
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            
+            <div class="inline-block align-middle bg-white dark:bg-gray-800 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:max-w-4xl sm:w-full rounded-2xl">
+                <div class="relative">
+                    <img id="blog-modal-img" src="" alt="" class="w-full h-64 md:h-80 object-cover">
+                    <button type="button" class="absolute top-4 right-4 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition backdrop-blur-sm" id="close-blog-btn">
+                        <span class="sr-only">Fechar</span>
+                        <i class="fa-solid fa-times text-xl w-6 h-6 flex items-center justify-center"></i>
+                    </button>
+                    <span id="blog-modal-category" class="absolute bottom-4 left-4 bg-brand text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg"></span>
+                </div>
+                
+                <div class="px-6 py-8 md:px-10">
+                    <div class="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400 mb-4">
+                        <span id="blog-modal-date"><i class="fa-regular fa-calendar mr-2"></i>Data</span>
+                        <span><i class="fa-regular fa-clock mr-2"></i>5 min de leitura</span>
+                    </div>
+                    
+                    <h3 class="text-2xl md:text-3xl font-heading font-bold text-gray-900 dark:text-white mb-3" id="blog-modal-title">Título do Artigo</h3>
+                    
+                    <div id="blog-modal-tags" class="flex flex-wrap gap-2 mb-6">
+                        <!-- Tags inseridas via JS -->
+                    </div>
+                    
+                    <div class="prose prose-lg max-w-none text-gray-600 dark:text-gray-300 leading-relaxed space-y-4" id="blog-modal-content">
+                        <!-- Content goes here -->
+                    </div>
+                </div>
+                
+                <!-- Blog Footer Share -->
+                <div class="bg-gray-50 dark:bg-gray-700 px-6 py-6 md:px-10 border-t border-gray-100 dark:border-gray-600">
+                    <h4 class="text-sm font-bold text-gray-900 dark:text-white mb-4">Compartilhar este artigo:</h4>
+                    <div class="flex gap-3">
+                        <button id="share-blog-whatsapp" class="flex-1 bg-[#25D366] hover:bg-[#20bd5a] text-white py-3 rounded-lg font-bold transition ripple-btn flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-xl"></i> <span class="hidden sm:inline">WhatsApp</span>
+                        </button>
+                        <button id="share-blog-facebook" class="flex-1 bg-[#1877F2] hover:bg-[#166fe5] text-white py-3 rounded-lg font-bold transition ripple-btn flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-facebook-f text-xl"></i> <span class="hidden sm:inline">Facebook</span>
+                        </button>
+                        <button id="share-blog-linkedin" class="flex-1 bg-[#0A66C2] hover:bg-[#0958a8] text-white py-3 rounded-lg font-bold transition ripple-btn flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-linkedin-in text-xl"></i> <span class="hidden sm:inline">LinkedIn</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Related Articles -->
+                <div class="bg-white dark:bg-gray-800 px-6 py-8 md:px-10 border-t border-gray-100 dark:border-gray-600">
+                    <h4 class="text-sm font-bold text-gray-900 dark:text-white mb-4">Você também pode gostar:</h4>
+                    <div id="blog-related-container" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- Injected via JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Privacy Policy Modal -->
+    <div id="privacy-modal" class="fixed inset-0 z-[90] hidden overflow-y-auto transition-opacity duration-300 opacity-0" aria-labelledby="privacy-title" role="dialog" aria-modal="true">
+        <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 bg-gray-900 bg-opacity-75 transition-opacity backdrop-blur-sm" aria-hidden="true" id="privacy-overlay"></div>
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            
+            <div class="inline-block align-middle bg-white dark:bg-gray-800 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:max-w-3xl sm:w-full rounded-2xl">
+                <div class="bg-white dark:bg-gray-800 px-6 py-6 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center">
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white" id="privacy-title">Política de Privacidade</h3>
+                    <button type="button" class="text-gray-400 hover:text-gray-500 focus:outline-none" id="close-privacy-btn">
+                        <i class="fa-solid fa-times text-xl"></i>
+                    </button>
+                </div>
+                <div class="px-6 py-6 max-h-[70vh] overflow-y-auto text-sm text-gray-600 dark:text-gray-300 space-y-4 leading-relaxed">
+                    <p>A sua privacidade é importante para nós. É política do H3CBD respeitar a sua privacidade em relação a qualquer informação sua que possamos coletar no site H3CBD, e outros sites que possuímos e operamos.</p>
+                    
+                    <h4 class="font-bold text-gray-900 dark:text-white mt-4">1. Coleta de Informações</h4>
+                    <p>Solicitamos informações pessoais apenas quando realmente precisamos delas para lhe fornecer um serviço (como agendamentos ou newsletter). Fazemo-lo por meios justos e legais, com o seu conhecimento e consentimento. Também informamos por que estamos coletando e como será usado.</p>
+                    
+                    <h4 class="font-bold text-gray-900 dark:text-white mt-4">2. Uso de Dados</h4>
+                    <p>Apenas retemos as informações coletadas pelo tempo necessário para fornecer o serviço solicitado. Quando armazenamos dados, protegemos dentro de meios comercialmente aceitáveis ​​para evitar perdas e roubos, bem como acesso, divulgação, cópia, uso ou modificação não autorizados.</p>
+                    
+                    <h4 class="font-bold text-gray-900 dark:text-white mt-4">3. Compartilhamento</h4>
+                    <p>Não compartilhamos informações de identificação pessoal publicamente ou com terceiros, exceto quando exigido por lei ou para conectar o paciente ao médico parceiro mediante solicitação expressa do usuário.</p>
+                    
+                    <h4 class="font-bold text-gray-900 dark:text-white mt-4">4. Cookies</h4>
+                    <p>O nosso site usa cookies para melhorar a experiência do usuário. Você é livre para recusar a nossa solicitação de informações pessoais, entendendo que talvez não possamos fornecer alguns dos serviços desejados.</p>
+                    
+                    <h4 class="font-bold text-gray-900 dark:text-white mt-4">5. Compromisso do Usuário</h4>
+                    <p>O usuário se compromete a fazer uso adequado dos conteúdos e da informação que o H3CBD oferece no site e com caráter enunciativo, mas não limitativo:</p>
+                    <ul class="list-disc pl-5 space-y-1">
+                        <li>A) Não se envolver em atividades que sejam ilegais ou contrárias à boa fé a à ordem pública;</li>
+                        <li>B) Não difundir propaganda ou conteúdo de natureza racista, xenofóbica, ou azar, qualquer tipo de pornografia ilegal, de apologia ao terrorismo ou contra os direitos humanos;</li>
+                    </ul>
+                    
+                    <p class="mt-4 italic text-xs">Esta política é efetiva a partir de Janeiro de 2024.</p>
+                </div>
+                <div class="bg-gray-50 dark:bg-gray-700 px-6 py-4 flex justify-end">
+                    <button type="button" class="inline-flex justify-center rounded-lg border border-transparent shadow-sm px-4 py-2 bg-brand text-base font-medium text-white hover:bg-brand-dark focus:outline-none sm:text-sm transition ripple-btn" id="accept-privacy-btn">
+                        Entendi
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Terms of Use Modal -->
+    <div id="terms-modal" class="fixed inset-0 z-[90] hidden overflow-y-auto transition-opacity duration-300 opacity-0" aria-labelledby="terms-title" role="dialog" aria-modal="true">
+        <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 bg-gray-900 bg-opacity-75 transition-opacity backdrop-blur-sm no-print" aria-hidden="true" id="terms-overlay"></div>
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            
+            <div id="printable-terms" class="inline-block align-middle bg-white dark:bg-gray-800 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:max-w-3xl sm:w-full rounded-2xl">
+                <div class="bg-white dark:bg-gray-800 px-6 py-6 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center">
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white" id="terms-title">Termos de Uso</h3>
+                    <button type="button" class="text-gray-400 hover:text-gray-500 focus:outline-none" id="close-terms-btn">
+                        <i class="fa-solid fa-times text-xl"></i>
+                    </button>
+                </div>
+                <div class="px-6 py-6 max-h-[70vh] overflow-y-auto text-sm text-gray-600 dark:text-gray-300 space-y-4 leading-relaxed">
+                    <h4 class="font-bold text-gray-900 dark:text-white mt-4">1. Termos</h4>
+                    <p>Ao acessar ao site H3CBD, concorda em cumprir estes termos de serviço, todas as leis e regulamentos aplicáveis ​​e concorda que é responsável pelo cumprimento de todas as leis locais aplicáveis. Se você não concordar com algum desses termos, está proibido de usar ou acessar este site.</p>
+                    
+                    <h4 class="font-bold text-gray-900 dark:text-white mt-4">2. Uso de Licença</h4>
+                    <p>É concedida permissão para baixar temporariamente uma cópia dos materiais (informações ou software) no site H3CBD, apenas para visualização transitória pessoal e não comercial. Esta é a concessão de uma licença, não uma transferência de título e, sob esta licença, você não pode:</p>
+                    <ul class="list-disc pl-5 space-y-1">
+                        <li>Modificar ou copiar os materiais;</li>
+                        <li>Usar os materiais para qualquer finalidade comercial ou para exibição pública (comercial ou não comercial);</li>
+                        <li>Tentar descompilar ou fazer engenharia reversa de qualquer software contido no site H3CBD;</li>
+                        <li>Remover quaisquer direitos autorais ou outras notações de propriedade dos materiais.</li>
+                    </ul>
+                    
+                    <h4 class="font-bold text-gray-900 dark:text-white mt-4">3. Isenção de responsabilidade médica</h4>
+                    <p>Os materiais no site da H3CBD são fornecidos 'como estão'. <strong>Este site tem caráter meramente informativo e educacional.</strong> Nenhuma informação aqui contida substitui o aconselhamento, diagnóstico ou tratamento médico profissional. Sempre procure o conselho do seu médico ou outro profissional de saúde qualificado com qualquer dúvida que possa ter sobre uma condição médica ou tratamento com Cannabis medicinal.</p>
+                    
+                    <h4 class="font-bold text-gray-900 dark:text-white mt-4">4. Limitações</h4>
+                    <p>Em nenhum caso o H3CBD ou seus fornecedores serão responsáveis ​​por quaisquer danos (incluindo, sem limitação, danos por perda de dados ou lucro ou devido a interrupção dos negócios) decorrentes do uso ou da incapacidade de usar os materiais em H3CBD.</p>
+                    
+                    <h4 class="font-bold text-gray-900 dark:text-white mt-4">5. Precisão dos materiais</h4>
+                    <p>Os materiais exibidos no site da H3CBD podem incluir erros técnicos, tipográficos ou fotográficos. H3CBD não garante que qualquer material em seu site seja preciso, completo ou atual.</p>
+                    
+                    <h4 class="font-bold text-gray-900 dark:text-white mt-4">6. Modificações</h4>
+                    <p>O H3CBD pode revisar estes termos de serviço do site a qualquer momento, sem aviso prévio. Ao usar este site, você concorda em ficar vinculado à versão atual desses termos de serviço.</p>
+                    
+                    <h4 class="font-bold text-gray-900 dark:text-white mt-4">7. Lei aplicável</h4>
+                    <p>Estes termos e condições são regidos e interpretados de acordo com as leis do Brasil e você se submete irrevogavelmente à jurisdição exclusiva dos tribunais naquele estado ou localidade.</p>
+                </div>
+                <div class="bg-gray-50 dark:bg-gray-700 px-6 py-4 flex justify-end gap-3 no-print">
+                    <button type="button" id="print-terms-btn" class="inline-flex justify-center rounded-lg border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none sm:text-sm transition ripple-btn">
+                        <i class="fa-solid fa-print mr-2"></i> Imprimir
+                    </button>
+                    <button type="button" class="inline-flex justify-center rounded-lg border border-transparent shadow-sm px-4 py-2 bg-brand text-base font-medium text-white hover:bg-brand-dark focus:outline-none sm:text-sm transition ripple-btn" id="accept-terms-btn">
+                        Concordo
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Appointment Modal -->
+    <div id="appointment-modal" class="fixed inset-0 z-[60] hidden overflow-y-auto transition-opacity duration-300 opacity-0" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 bg-gray-900 bg-opacity-75 transition-opacity backdrop-blur-sm" aria-hidden="true" id="appointment-overlay"></div>
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            
+            <div class="inline-block align-bottom bg-white dark:bg-gray-800 rounded-2xl text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                <div class="bg-white dark:bg-gray-800 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-xl leading-6 font-heading font-bold text-gray-900 dark:text-white" id="appointment-modal-title">Agendamento Rápido</h3>
+                        <button type="button" class="bg-gray-100 dark:bg-gray-700 rounded-full p-2 text-gray-400 hover:text-gray-500 hover:bg-gray-200 dark:hover:bg-gray-600 focus:outline-none transition" id="close-appointment-btn">
+                            <span class="sr-only">Fechar</span>
+                            <i class="fa-solid fa-times text-lg w-5 h-5 flex items-center justify-center"></i>
+                        </button>
+                    </div>
+                    
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mb-6">Preencha seus dados para solicitar um agendamento com <span id="doctor-name-display" class="font-bold text-brand"></span>.</p>
+                    
+                    <form id="appointment-form" class="space-y-4">
+                        <div>
+                            <label for="patient-name" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Seu Nome</label>
+                            <input type="text" id="patient-name" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-brand focus:ring focus:ring-brand focus:ring-opacity-50 dark:bg-gray-700 dark:border-gray-600 dark:text-white px-4 py-2">
+                            <p id="name-error" class="text-red-500 text-xs mt-1 hidden"></p>
+                        </div>
+                        <div>
+                            <label for="patient-phone" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Telefone / WhatsApp</label>
+                            <input type="tel" id="patient-phone" required maxlength="15" placeholder="(11) 99999-9999" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-brand focus:ring focus:ring-brand focus:ring-opacity-50 dark:bg-gray-700 dark:border-gray-600 dark:text-white px-4 py-2">
+                        </div>
+                        
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center">
+                                <input id="remember-me" type="checkbox" class="h-4 w-4 text-brand focus:ring-brand border-gray-300 rounded cursor-pointer">
+                                <label for="remember-me" class="ml-2 block text-sm text-gray-900 dark:text-gray-300 cursor-pointer">
+                                    Lembrar meus dados
+                                </label>
+                            </div>
+                            <button type="button" id="clear-data-btn" class="text-xs text-gray-500 hover:text-red-500 transition underline">Limpar meus dados</button>
+                        </div>
+                        
+                        <div class="pt-4">
+                            <button type="submit" class="w-full inline-flex justify-center rounded-full border border-transparent shadow-sm px-4 py-3 bg-brand text-base font-medium text-white hover:bg-brand-dark focus:outline-none sm:text-sm transition ripple-btn">
+                                Solicitar via WhatsApp <i class="fa-brands fa-whatsapp ml-2"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Doctor Registration Modal -->
+    <div id="doctor-modal" class="fixed inset-0 z-[60] hidden overflow-y-auto transition-opacity duration-300 opacity-0" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 bg-gray-900 bg-opacity-75 transition-opacity backdrop-blur-sm" aria-hidden="true" id="doctor-overlay"></div>
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            
+            <div class="inline-block align-bottom bg-white dark:bg-gray-800 rounded-2xl text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                <div class="bg-white dark:bg-gray-800 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-xl leading-6 font-heading font-bold text-gray-900 dark:text-white">Cadastro de Médico Parceiro</h3>
+                        <button type="button" class="bg-gray-100 dark:bg-gray-700 rounded-full p-2 text-gray-400 hover:text-gray-500 hover:bg-gray-200 dark:hover:bg-gray-600 focus:outline-none transition" id="close-doctor-modal-btn">
+                            <span class="sr-only">Fechar</span>
+                            <i class="fa-solid fa-times text-lg w-5 h-5 flex items-center justify-center"></i>
+                        </button>
+                    </div>
+                    
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mb-6">Preencha seus dados profissionais para iniciar o processo de parceria.</p>
+                    
+                    <form id="doctor-form" class="space-y-4">
+                        <div>
+                            <label for="doctor-name" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Nome Completo</label>
+                            <input type="text" id="doctor-name" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-brand focus:ring focus:ring-brand focus:ring-opacity-50 dark:bg-gray-700 dark:border-gray-600 dark:text-white px-4 py-2">
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <div class="flex items-center gap-2">
+                                    <label for="doctor-crm" class="block text-sm font-medium text-gray-700 dark:text-gray-300">CRM / UF</label>
+                                    <div class="relative group">
+                                        <i class="fa-solid fa-circle-question text-gray-400 hover:text-brand cursor-help text-sm"></i>
+                                        <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:block w-48 bg-gray-900 text-white text-xs rounded p-2 z-10 text-center shadow-lg pointer-events-none">
+                                            Formato obrigatório: Números/UF (Ex: 123456/SP)
+                                            <div class="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-gray-900"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="text" id="doctor-crm" required placeholder="Ex: 123456/SP" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-brand focus:ring focus:ring-brand focus:ring-opacity-50 dark:bg-gray-700 dark:border-gray-600 dark:text-white px-4 py-2">
+                            </div>
+                            <div>
+                                <label for="doctor-specialty" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Especialidade</label>
+                                <input type="text" id="doctor-specialty" required placeholder="Ex: Neurologia" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-brand focus:ring focus:ring-brand focus:ring-opacity-50 dark:bg-gray-700 dark:border-gray-600 dark:text-white px-4 py-2">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="doctor-phone" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Telefone / WhatsApp</label>
+                            <input type="tel" id="doctor-phone" required maxlength="15" placeholder="(11) 99999-9999" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-brand focus:ring focus:ring-brand focus:ring-opacity-50 dark:bg-gray-700 dark:border-gray-600 dark:text-white px-4 py-2">
+                        </div>
+                        <div>
+                            <label for="doctor-email" class="block text-sm font-medium text-gray-700 dark:text-gray-300">E-mail Profissional</label>
+                            <input type="email" id="doctor-email" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-brand focus:ring focus:ring-brand focus:ring-opacity-50 dark:bg-gray-700 dark:border-gray-600 dark:text-white px-4 py-2">
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <input id="doctor-terms" type="checkbox" required class="h-4 w-4 text-brand focus:ring-brand border-gray-300 rounded cursor-pointer">
+                            <label for="doctor-terms" class="ml-2 block text-sm text-gray-900 dark:text-gray-300 cursor-pointer">
+                                Li e concordo com os <button type="button" id="link-terms-doctor" class="text-brand hover:underline">Termos de Uso</button>
+                            </label>
+                        </div>
+                        
+                        <div class="pt-4">
+                            <button type="submit" class="w-full inline-flex justify-center rounded-full border border-transparent shadow-sm px-4 py-3 bg-brand text-base font-medium text-white hover:bg-brand-dark focus:outline-none sm:text-sm transition ripple-btn">
+                                Enviar Cadastro <i class="fa-solid fa-paper-plane ml-2"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Guide Modal (Printable) -->
+    <div id="guide-modal" class="fixed inset-0 z-[70] hidden overflow-y-auto" aria-labelledby="guide-title" role="dialog" aria-modal="true">
+        <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 bg-gray-900 bg-opacity-75 transition-opacity backdrop-blur-sm no-print" aria-hidden="true" id="guide-overlay"></div>
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            
+            <div id="printable-guide" class="inline-block align-middle bg-white text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:max-w-3xl sm:w-full rounded-2xl">
+                <div class="bg-white p-8 md:p-12">
+                    <!-- Header -->
+                    <div class="flex justify-between items-start mb-8 border-b border-gray-200 pb-6">
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-leaf text-brand text-3xl"></i>
+                            <div>
+                                <h2 class="text-2xl font-bold text-gray-900">H3CBD</h2>
+                                <p class="text-sm text-gray-500">Guia de Acesso ao Tratamento</p>
+                            </div>
+                        </div>
+                        <div class="text-right hidden sm:block">
+                            <p class="text-xs text-gray-400">Documento Informativo</p>
+                            <p class="text-xs text-gray-400">Atualizado em 2024</p>
+                        </div>
+                    </div>
+
+                    <!-- Content -->
+                    <div class="space-y-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Checklist para Importação Legal</h3>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-start gap-4 p-4 bg-gray-50 rounded-lg border border-gray-100">
+                                <div class="w-6 h-6 rounded border-2 border-brand flex items-center justify-center mt-1">
+                                    <i class="fa-solid fa-check text-brand text-xs"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-900">1. Consulta Médica</h4>
+                                    <p class="text-sm text-gray-600">Obter receita médica contendo: Nome do paciente, produto, posologia, data, assinatura e carimbo com CRM.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4 p-4 bg-gray-50 rounded-lg border border-gray-100">
+                                <div class="w-6 h-6 rounded border-2 border-brand flex items-center justify-center mt-1">
+                                    <i class="fa-solid fa-check text-brand text-xs"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-900">2. Documentos Pessoais</h4>
+                                    <p class="text-sm text-gray-600">Digitalizar RG (ou CNH) e comprovante de residência atualizado.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4 p-4 bg-gray-50 rounded-lg border border-gray-100">
+                                <div class="w-6 h-6 rounded border-2 border-brand flex items-center justify-center mt-1">
+                                    <i class="fa-solid fa-check text-brand text-xs"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-900">3. Cadastro Gov.br</h4>
+                                    <p class="text-sm text-gray-600">Acessar o portal do Governo e solicitar autorização de importação excepcional (ANVISA).</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4 p-4 bg-gray-50 rounded-lg border border-gray-100">
+                                <div class="w-6 h-6 rounded border-2 border-brand flex items-center justify-center mt-1">
+                                    <i class="fa-solid fa-check text-brand text-xs"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-900">4. Compra do Produto</h4>
+                                    <p class="text-sm text-gray-600">Realizar o pedido na H3CBD com a autorização emitida em mãos.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-8 p-4 bg-brand/10 rounded-lg border border-brand/20 text-sm text-gray-700">
+                            <strong>Nota Importante:</strong> Este guia serve apenas para orientação. A H3CBD oferece suporte completo em todas as etapas. Em caso de dúvidas, entre em contato pelo WhatsApp.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer Actions (No Print) -->
+                <div class="bg-gray-50 px-8 py-4 flex flex-col sm:flex-row justify-end gap-3 no-print rounded-b-2xl">
+                    <button type="button" id="print-guide-btn" class="inline-flex justify-center items-center rounded-lg border border-transparent shadow-sm px-6 py-2 bg-gray-800 text-white hover:bg-gray-700 focus:outline-none transition ripple-btn">
+                        <i class="fa-solid fa-print mr-2"></i> Imprimir / Salvar PDF
+                    </button>
+                    <button type="button" id="close-guide-btn" class="inline-flex justify-center items-center rounded-lg border border-gray-300 shadow-sm px-6 py-2 bg-white text-gray-700 hover:bg-gray-50 focus:outline-none transition ripple-btn">
+                        Fechar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/5511999999999" target="_blank" class="fixed bottom-6 right-6 bg-[#25D366] text-white w-16 h-16 rounded-full shadow-2xl flex items-center justify-center text-4xl hover:scale-110 transition z-50 hover:bg-[#20bd5a] animate-pulse-custom" aria-label="Fale conosco no WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- Cookie Settings Button -->
+    <button id="cookie-settings-btn" class="fixed bottom-6 left-6 z-40 bg-gray-800 text-gray-400 hover:text-white hover:bg-brand w-10 h-10 rounded-full shadow-lg transition-all duration-300 hidden flex items-center justify-center" title="Preferências de Cookies">
+        <i class="fa-solid fa-cookie-bite"></i>
+    </button>
+
+    <!-- Toast Notification -->
+    <div id="toast-notification" class="fixed bottom-24 right-6 z-[100] transform translate-y-20 opacity-0 transition-all duration-300 flex items-center bg-gray-900 text-white px-6 py-4 rounded-xl shadow-2xl border border-gray-800 pointer-events-none">
+        <i class="fa-solid fa-check-circle text-[#25D366] text-2xl mr-4"></i>
+        <div>
+            <h4 class="font-bold text-sm">Sucesso!</h4>
+            <p class="text-xs text-gray-400">Seus dados foram limpos.</p>
+        </div>
+    </div>
+
+    <script>
+        // Preloader Logic
+        const preloader = document.getElementById('preloader');
+        const progressBar = document.getElementById('preloader-progress');
+        const percentText = document.getElementById('preloader-percent');
+
+        function animateValue(obj, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                obj.innerHTML = Math.floor(progress * (end - start) + start) + "%";
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        // Inicia o carregamento visual
+        if (progressBar) {
+            progressBar.style.transition = 'width 3s ease-out';
+            requestAnimationFrame(() => progressBar.style.width = '70%');
+            if (percentText) animateValue(percentText, 0, 70, 3000);
+        }
+
+        window.addEventListener('load', () => {
+            if (progressBar) {
+                progressBar.style.transition = 'width 2s ease-out';
+                progressBar.style.width = '100%';
+            }
+            
+            if (percentText) {
+                const current = parseInt(percentText.innerText) || 70;
+                animateValue(percentText, current, 100, 2000);
+            }
+
+            setTimeout(() => {
+                preloader.classList.add('opacity-0');
+                setTimeout(() => {
+                    preloader.style.display = 'none';
+                }, 700);
+            }, 2000); // Exibe por 2 segundos
+        });
+
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Navbar Background on Scroll
+        const navbar = document.getElementById('navbar');
+        let isScrolled = false;
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                if (!isScrolled) {
+                    navbar.classList.add('bg-brand-deep/80', 'backdrop-blur-md', 'shadow-md', 'py-2', 'border-b', 'border-white/10');
+                    navbar.classList.remove('bg-transparent', 'py-4');
+                    isScrolled = true;
+                }
+            } else if (isScrolled) {
+                navbar.classList.remove('bg-brand-deep/80', 'backdrop-blur-md', 'shadow-md', 'py-2', 'border-b', 'border-white/10');
+                navbar.classList.add('bg-transparent', 'py-4');
+                isScrolled = false;
+            }
+        });
+
+        // Scroll Animation Observer
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target); // Only animate once
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in-up').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Carousel Logic
+        const track = document.getElementById('carousel-track');
+        const slides = track.children;
+        const nextBtn = document.getElementById('next-slide');
+        const prevBtn = document.getElementById('prev-slide');
+        let currentSlide = 0;
+
+        function updateCarousel() {
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+        }
+
+        nextBtn.addEventListener('click', () => {
+            currentSlide = (currentSlide + 1) % slides.length;
+            updateCarousel();
+        });
+
+        prevBtn.addEventListener('click', () => {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            updateCarousel();
+        });
+
+        // Search Medicos Logic
+        const searchInput = document.getElementById('search-medicos');
+        const specialtyFilter = document.getElementById('filter-specialty');
+        const medicosGrid = document.querySelector('#medicos .grid');
+        
+        function filterMedicos() {
+            if (!medicosGrid) return;
+            
+            const searchTerm = searchInput ? searchInput.value.toLowerCase() : '';
+            const specialtyTerm = specialtyFilter ? specialtyFilter.value.toLowerCase() : '';
+            const cards = medicosGrid.children;
+
+            Array.from(cards).forEach(card => {
+                const name = card.querySelector('h4').textContent.toLowerCase();
+                const specialty = card.querySelector('p.text-brand').textContent.toLowerCase();
+                
+                const matchesSearch = name.includes(searchTerm);
+                const matchesSpecialty = specialtyTerm === '' || specialty.includes(specialtyTerm);
+                
+                if (matchesSearch && matchesSpecialty) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        }
+
+        if (searchInput) searchInput.addEventListener('input', filterMedicos);
+        if (specialtyFilter) specialtyFilter.addEventListener('change', filterMedicos);
+
+        // Load More Medicos Logic
+        const loadMoreBtn = document.getElementById('load-more-medicos');
+        if (loadMoreBtn && medicosGrid) {
+            loadMoreBtn.addEventListener('click', () => {
+                // Dados simulados para gerar a lista
+                const specialties = ['Neurologista', 'Psiquiatra', 'Geriatra', 'Reumatologista', 'Clínico Geral', 'Ortopedista', 'Endocrinologista'];
+                const names = ['Dr. André Gomes', 'Dra. Beatriz Lima', 'Dr. Carlos Mendes', 'Dra. Daniela Rocha', 'Dr. Eduardo Nunes', 'Dra. Fernanda Dias', 'Dr. Gabriel Torres', 'Dra. Helena Martins', 'Dr. Igor Santos', 'Dra. Julia Pereira'];
+                const images = [
+                    'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?q=80&w=300&auto=format&fit=crop',
+                    'https://images.unsplash.com/photo-1594824476967-48c8b964273f?q=80&w=300&auto=format&fit=crop',
+                    'https://images.unsplash.com/photo-1537368910025-700350fe46c7?q=80&w=300&auto=format&fit=crop',
+                    'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=300&auto=format&fit=crop',
+                    'https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=300&auto=format&fit=crop',
+                    'https://images.unsplash.com/photo-1614608682850-e0d6ed316d47?q=80&w=300&auto=format&fit=crop'
+                ];
+
+                let newCardsHTML = '';
+                // Gerar mais 56 médicos para completar aprox. 60
+                for (let i = 0; i < 56; i++) {
+                    const name = names[i % names.length];
+                    const specialty = specialties[i % specialties.length];
+                    const img = images[i % images.length];
+                    
+                    newCardsHTML += `
+                    <div class="bg-gray-50 dark:bg-gray-700 rounded-2xl p-6 text-center hover:shadow-lg transition duration-300 border border-gray-100 dark:border-gray-600 group fade-in-up visible">
+                        <div class="w-24 h-24 mx-auto rounded-full overflow-hidden mb-4 border-4 border-white shadow-md">
+                            <img src="${img}" alt="${name}" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="font-bold text-lg text-gray-900 dark:text-white">${name} ${i + 1}</h4>
+                        <p class="text-brand text-sm font-bold uppercase mb-3">${specialty}</p>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm mb-4 leading-relaxed line-clamp-3">Especialista parceiro da H3CBD focado em tratamentos naturais e bem-estar do paciente.</p>
+                        <div class="flex justify-center gap-3">
+                            <a href="#" class="w-8 h-8 rounded-full bg-white dark:bg-gray-600 text-gray-600 dark:text-gray-200 hover:text-brand hover:shadow-md flex items-center justify-center transition"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="#" class="w-8 h-8 rounded-full bg-white dark:bg-gray-600 text-gray-600 dark:text-gray-200 hover:text-brand hover:shadow-md flex items-center justify-center transition"><i class="fa-brands fa-linkedin-in"></i></a>
+                            <button class="w-8 h-8 rounded-full bg-white dark:bg-gray-600 text-gray-600 dark:text-gray-200 hover:text-brand hover:shadow-md flex items-center justify-center transition appointment-btn" data-doctor="${name} ${i + 1}" title="Agendar Consulta"><i class="fa-solid fa-calendar-check"></i></button>
+                        </div>
+                    </div>
+                    `;
+                }
+                
+                medicosGrid.insertAdjacentHTML('beforeend', newCardsHTML);
+                loadMoreBtn.style.display = 'none'; // Oculta o botão após carregar
+                
+                // Reaplica os filtros
+                filterMedicos();
+            });
+        }
+
+        // FAQ Accordion Logic
+        const faqBtns = document.querySelectorAll('.faq-btn');
+        
+        faqBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const content = btn.nextElementSibling;
+                const icon = btn.querySelector('i');
+                
+                // Fecha outros itens abertos (opcional, para efeito sanfona único)
+                faqBtns.forEach(otherBtn => {
+                    if (otherBtn !== btn) {
+                        otherBtn.nextElementSibling.style.maxHeight = null;
+                        otherBtn.querySelector('i').classList.remove('rotate-180');
+                    }
+                });
+
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                    icon.classList.remove('rotate-180');
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                    icon.classList.add('rotate-180');
+                }
+            });
+        });
+
+        // Ripple Effect Logic
+        const rippleButtons = document.querySelectorAll('.ripple-btn');
+        
+        rippleButtons.forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                const circle = document.createElement('span');
+                const diameter = Math.max(btn.clientWidth, btn.clientHeight);
+                const radius = diameter / 2;
+                
+                // Get click coordinates relative to button
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                circle.style.width = circle.style.height = `${diameter}px`;
+                circle.style.left = `${x - radius}px`;
+                circle.style.top = `${y - radius}px`;
+                circle.classList.add('ripple');
+                
+                // Dark ripple for light buttons
+                if (btn.classList.contains('bg-white') || btn.classList.contains('bg-gray-100') || btn.classList.contains('bg-transparent')) {
+                    circle.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
+                } else {
+                    circle.style.backgroundColor = 'rgba(255, 255, 255, 0.4)';
+                }
+
+                btn.appendChild(circle);
+                
+                // Clean up after animation
+                setTimeout(() => {
+                    circle.remove();
+                }, 600);
+            });
+        });
+
+        // Product Data & Logic (25 Products)
+        const productsData = [
+            // Full Spectrum (5)
+            { name: 'Óleo CBD Full Spectrum 500mg', category: 'Full Spectrum', price: 'R$ 189,90', img: 'https://images.unsplash.com/photo-1611070467884-5344d93be49d?q=80&w=400&auto=format&fit=crop' },
+            { name: 'Óleo CBD Full Spectrum 1500mg', category: 'Full Spectrum', price: 'R$ 249,90', img: 'https://images.unsplash.com/photo-1629196914375-f7e48f477b6d?q=80&w=400&auto=format&fit=crop' },
+            { name: 'Óleo CBD Full Spectrum 3000mg', category: 'Full Spectrum', price: 'R$ 399,90', img: 'https://images.unsplash.com/photo-1615485925694-a035aa0f471e?q=80&w=400&auto=format&fit=crop' },
+            { name: 'Cápsulas Full Spectrum', category: 'Full Spectrum', price: 'R$ 159,90', img: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=400&auto=format&fit=crop' },
+            { name: 'Gotas Noturnas Full Spectrum', category: 'Full Spectrum', price: 'R$ 210,00', img: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?q=80&w=400&auto=format&fit=crop' },
+            
+            // Broad Spectrum (4)
+            { name: 'Óleo Broad Spectrum 1000mg', category: 'Broad Spectrum', price: 'R$ 229,90', img: 'https://images.unsplash.com/photo-1611070467884-5344d93be49d?q=80&w=400&auto=format&fit=crop' },
+            { name: 'Óleo Broad Spectrum Zero THC', category: 'Broad Spectrum', price: 'R$ 239,90', img: 'https://images.unsplash.com/photo-1631541909061-71e349d1f203?q=80&w=400&auto=format&fit=crop' },
+            { name: 'Spray Broad Spectrum Menta', category: 'Broad Spectrum', price: 'R$ 149,90', img: 'https://images.unsplash.com/photo-1622460615616-a0e865a8651e?q=80&w=400&auto=format&fit=crop' },
+            { name: 'Cápsulas Gel Broad Spectrum', category: 'Broad Spectrum', price: 'R$ 179,90', img: 'https://images.unsplash.com/photo-1471864190281-a93a3070b6de?q=80&w=400&auto=format&fit=crop' },
+            
+            // Muscle (4)
+            { name: 'Creme de Alívio Muscular', category: 'Muscle', price: 'R$ 189,90', img: 'https://images.unsplash.com/photo-1595977437232-9a0426eb7478?q=80&w=400&auto=format&fit=crop' },
+            { name: 'Gel Roll-on Sport', category: 'Muscle', price: 'R$ 129,90', img: 'https://images.unsplash.com/photo-1556228552-e3a7d6d9b3df?q=80&w=400&auto=format&fit=crop' },
+            { name: 'Bálsamo Recuperador', category: 'Muscle', price: 'R$ 159,90', img: 'https://images.unsplash.com/photo-1608248597279-f99d160bfbc8?q=80&w=400&auto=format&fit=crop' },
+            { name: 'Sais de Banho Muscular', category: 'Muscle', price: 'R$ 89,90', img: 'https://images.unsplash.com/photo-1611070467884-5344d93be49d?q=80&w=400&auto=format&fit=crop' },
+            
+            // Relax (4)
+            { name: 'Óleo Relax Lavanda', category: 'Relax', price: 'R$ 199,90', img: 'https://images.unsplash.com/photo-1601924994987-69e26d50dc26?q=80&w=400&auto=format&fit=crop' },
+            { name: 'Chá Infusão CBD Relax', category: 'Relax', price: 'R$ 69,90', img: 'https://images.unsplash.com/photo-1597481499750-3e6b22637e12?q=80&w=400&auto=format&fit=crop' },
+            { name: 'Vape Pen Relax', category: 'Relax', price: 'R$ 149,90', img: 'https://images.unsplash.com/photo-1550572017-edd951aa8f72?q=80&w=400&auto=format&fit=crop' },
+            { name: 'Gotas Calmantes', category: 'Relax', price: 'R$ 179,90', img: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?q=80&w=400&auto=format&fit=crop' },
+            
+            // Gomitas (4)
+            { name: 'Gummies Mix Frutas', category: 'Gomitas', price: 'R$ 159,90', img: 'https://images.unsplash.com/photo-1581795775489-bbe9590f82d9?q=80&w=400&auto=format&fit=crop' },
+            { name: 'Gummies Morango Azedinho', category: 'Gomitas', price: 'R$ 159,90', img: 'https://images.unsplash.com/photo-1600093463592-8e36ae95ef56?q=80&w=400&auto=format&fit=crop' },
+            { name: 'Gummies Uva Noturna', category: 'Gomitas', price: 'R$ 169,90', img: 'https://images.unsplash.com/photo-1582053433976-25c00369fc93?q=80&w=400&auto=format&fit=crop' },
+            { name: 'Gummies Vegan Citrus', category: 'Gomitas', price: 'R$ 169,90', img: 'https://images.unsplash.com/photo-1629196914375-f7e48f477b6d?q=80&w=400&auto=format&fit=crop' },
+            
+            // Vitality (4)
+            { name: 'Cápsulas Vitality Focus', category: 'Vitality', price: 'R$ 189,90', img: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=400&auto=format&fit=crop' },
+            { name: 'Óleo Energy Cítrico', category: 'Vitality', price: 'R$ 209,90', img: 'https://images.unsplash.com/photo-1611070467884-5344d93be49d?q=80&w=400&auto=format&fit=crop' },
+            { name: 'Suplemento Vitality Dia', category: 'Vitality', price: 'R$ 149,90', img: 'https://images.unsplash.com/photo-1622460615616-a0e865a8651e?q=80&w=400&auto=format&fit=crop' },
+            { name: 'Shot Matinal CBD', category: 'Vitality', price: 'R$ 19,90', img: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?q=80&w=400&auto=format&fit=crop' },
+        ];
+
+        // Enrich productsData with details based on category
+        const categoryDetails = {
+            'Full Spectrum': {
+                desc: 'Nossa fórmula Full Spectrum preserva todos os compostos benéficos da planta, incluindo canabinoides, terpenos e flavonoides, proporcionando o efeito entourage completo para máxima eficácia terapêutica.',
+                ing: 'Óleo de Semente de Cânhamo Prensado a Frio, Extrato de Cânhamo Full Spectrum (CBD, CBG, CBN, THC < 0.3%), Terpenos Naturais.'
+            },
+            'Broad Spectrum': {
+                desc: 'Ideal para quem busca os benefícios do efeito entourage sem a presença de THC. Passa por um processo adicional de refinamento para remover completamente o THC, mantendo outros canabinoides essenciais.',
+                ing: 'Óleo de Coco MCT (Triglicerídeos de Cadeia Média), Extrato de Cânhamo Broad Spectrum, Terpenos Selecionados.'
+            },
+            'Muscle': {
+                desc: 'Desenvolvido especificamente para recuperação muscular e alívio de dores. Combina o poder anti-inflamatório do CBD com agentes refrescantes e calmantes para acelerar a recuperação pós-treino.',
+                ing: 'Base em Gel/Creme Hidratante, Isolado de CBD (99% Pureza), Mentol, Cânfora, Óleo de Arnica, Óleo Essencial de Eucalipto.'
+            },
+            'Relax': {
+                desc: 'Uma mistura sinérgica focada no relaxamento profundo e alívio do estresse. Perfeito para desacelerar após um dia agitado e preparar o corpo e a mente para um descanso reparador.',
+                ing: 'Óleo de Semente de Uva, Extrato de CBD Broad Spectrum, Extrato de Lavanda, Extrato de Camomila, Melatonina (nas versões noturnas).'
+            },
+            'Gomitas': {
+                desc: 'A forma mais saborosa e prática de consumir sua dose diária de CBD. Gomas veganas, feitas com suco de frutas reais e infundidas com CBD de alta qualidade para absorção consistente.',
+                ing: 'Xarope de Tapioca Orgânico, Açúcar de Cana, Água, Pectina, Ácido Cítrico, Citrato de Sódio, Extrato de Cânhamo, Aromas e Corantes Naturais.'
+            },
+            'Vitality': {
+                desc: 'Fórmula energizante projetada para aumentar o foco, a clareza mental e a disposição. Combina CBD com adaptógenos e vitaminas para impulsionar sua produtividade natural.',
+                ing: 'Óleo MCT, Extrato de CBD Isolate, Vitamina B12, Ginseng, Guaraná, Óleo Essencial de Limão Siciliano.'
+            }
+        };
+
+        productsData.forEach(p => {
+            const details = categoryDetails[p.category] || { desc: 'Descrição indisponível.', ing: 'Ingredientes indisponíveis.' };
+            p.description = details.desc;
+            p.ingredients = details.ing;
+        });
+
+        const productsGrid = document.getElementById('products-grid');
+        const filterBtns = document.querySelectorAll('.filter-btn-prod');
+        const priceRange = document.getElementById('price-range');
+        const priceDisplay = document.getElementById('price-display');
+        
+        let currentCategory = 'all';
+        let currentMaxPrice = 500;
+
+        function parsePrice(priceStr) {
+            return parseFloat(priceStr.replace('R$ ', '').replace(/\./g, '').replace(',', '.'));
+        }
+
+        // Helper para otimizar imagens automaticamente (WebP/AVIF)
+        function getOptimizedImageUrl(url) {
+            if (url.includes('images.unsplash.com')) {
+                // Se não tiver formatação explícita, força auto=format (WebP/AVIF)
+                if (!url.includes('auto=format') && !url.includes('fm=')) {
+                    return url + (url.includes('?') ? '&' : '?') + 'auto=format&fit=crop&q=80';
+                }
+            }
+            return url;
+        }
+
+        function renderProducts() {
+            productsGrid.innerHTML = '';
+            
+            let filtered = productsData;
+
+            // Filter by Category
+            if (currentCategory !== 'all') {
+                filtered = filtered.filter(p => p.category === currentCategory);
+            }
+
+            // Filter by Price
+            filtered = filtered.filter(p => parsePrice(p.price) <= currentMaxPrice);
+
+            if (filtered.length === 0) {
+                productsGrid.innerHTML = '<div class="col-span-full text-center text-gray-300 py-8 text-lg">Nenhum produto encontrado nesta faixa de preço.</div>';
+                return;
+            }
+
+            filtered.forEach((product, index) => {
+                const delay = (index % 5) * 100; // Stagger animation
+                const card = `
+                <div class="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden group fade-in-up visible border-2 border-transparent hover:border-brand transition-colors duration-300" style="transition-delay: ${delay}ms">
+                    <div class="h-64 overflow-hidden relative cursor-pointer open-modal-btn" data-index="${index}">
+                        <!-- Skeleton Loader -->
+                        <div class="absolute inset-0 bg-gray-200 dark:bg-gray-700 animate-pulse"></div>
+                        
+                        <img src="${getOptimizedImageUrl(product.img)}" alt="${product.name}" loading="lazy" 
+                             class="w-full h-full object-cover transition-all duration-700 ease-in-out group-hover:scale-110 opacity-0 relative z-10"
+                             onload="this.classList.remove('opacity-0'); this.previousElementSibling.remove()">
+                        
+                        <span class="absolute top-4 right-4 bg-brand text-white text-xs font-bold px-3 py-1 rounded-full z-20">${product.category}</span>
+                    </div>
+                    <div class="p-6 text-gray-900">
+                        <h4 class="text-lg font-bold mb-2 leading-tight cursor-pointer hover:text-brand transition open-modal-btn dark:text-white" data-index="${index}">${product.name}</h4>
+                        <p class="text-gray-500 dark:text-gray-400 text-sm mb-4">Qualidade Premium H3CBD</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xl font-bold text-brand-dark">${product.price}</span>
+                            <button class="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-[#25D366] hover:text-white flex items-center justify-center transition ripple-btn buy-whatsapp-btn" data-index="${index}">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                `;
+                productsGrid.insertAdjacentHTML('beforeend', card);
+            });
+            
+            // Re-attach ripple effect to new buttons
+            const newRippleBtns = productsGrid.querySelectorAll('.ripple-btn');
+            newRippleBtns.forEach(btn => {
+                btn.addEventListener('click', createRipple);
+            });
+
+            // Attach WhatsApp Buy Listeners
+            const buyWaBtns = productsGrid.querySelectorAll('.buy-whatsapp-btn');
+            buyWaBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const product = filtered[btn.dataset.index];
+                    const phoneNumber = "5511999999999";
+                    const message = encodeURIComponent(`Olá! Tenho interesse no produto: ${product.name}`);
+                    window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+                });
+            });
+
+            // Attach Modal Listeners
+            const modalBtns = productsGrid.querySelectorAll('.open-modal-btn');
+            modalBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    openModal(filtered[btn.dataset.index]);
+                });
+            });
+        }
+
+        // Filter Click Logic
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all
+                filterBtns.forEach(b => {
+                    b.classList.remove('bg-brand-light', 'text-brand-deep', 'font-bold');
+                    b.classList.add('text-white', 'font-medium');
+                });
+                // Add active class to clicked
+                btn.classList.remove('text-white', 'font-medium');
+                btn.classList.add('bg-brand-light', 'text-brand-deep', 'font-bold');
+                
+                currentCategory = btn.dataset.category;
+                renderProducts();
+            });
+        });
+
+        // Price Slider Logic
+        if (priceRange && priceDisplay) {
+            priceRange.addEventListener('input', (e) => {
+                currentMaxPrice = parseInt(e.target.value);
+                priceDisplay.textContent = `R$ ${currentMaxPrice.toFixed(2).replace('.', ',')}`;
+                renderProducts();
+            });
+        }
+
+        // Clear Filters Logic
+        const clearFiltersBtn = document.getElementById('clear-filters-btn');
+        
+        if (clearFiltersBtn) {
+            clearFiltersBtn.addEventListener('click', () => {
+                // Reset Category
+                currentCategory = 'all';
+                filterBtns.forEach(b => {
+                    if (b.dataset.category === 'all') {
+                        b.classList.remove('text-white', 'font-medium');
+                        b.classList.add('bg-brand-light', 'text-brand-deep', 'font-bold');
+                    } else {
+                        b.classList.remove('bg-brand-light', 'text-brand-deep', 'font-bold');
+                        b.classList.add('text-white', 'font-medium');
+                    }
+                });
+
+                // Reset Price
+                currentMaxPrice = 500;
+                if (priceRange) priceRange.value = 500;
+                if (priceDisplay) priceDisplay.textContent = 'R$ 500,00';
+
+                // Re-render
+                renderProducts();
+            });
+        }
+
+        // Initial Render
+        renderProducts();
+
+        // Helper for ripple re-attachment
+        function createRipple(e) {
+            const btn = this;
+            const circle = document.createElement('span');
+            const diameter = Math.max(btn.clientWidth, btn.clientHeight);
+            const radius = diameter / 2;
+            const rect = btn.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            circle.style.width = circle.style.height = `${diameter}px`;
+            circle.style.left = `${x - radius}px`;
+            circle.style.top = `${y - radius}px`;
+            circle.classList.add('ripple');
+            circle.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
+            btn.appendChild(circle);
+            setTimeout(() => circle.remove(), 600);
+        }
+
+        // Modal Logic
+        const modal = document.getElementById('product-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalImg = document.getElementById('modal-img');
+        const modalCategory = document.getElementById('modal-category');
+        const modalPrice = document.getElementById('modal-price');
+        const modalDesc = document.getElementById('modal-description');
+        const modalIng = document.getElementById('modal-ingredients');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+        const modalBuyBtn = document.getElementById('modal-buy-btn');
+        const shareProductBtn = document.getElementById('share-product-btn');
+        const closeModalFooterBtn = document.getElementById('close-modal-footer-btn');
+        const modalOverlay = document.getElementById('modal-overlay');
+
+        function openModal(product) {
+            modalTitle.textContent = product.name;
+            modalImg.src = product.img;
+            modalCategory.textContent = product.category;
+            modalPrice.textContent = product.price;
+            modalDesc.textContent = product.description;
+            modalIng.textContent = product.ingredients;
+            
+            // Configurar botão do WhatsApp no Modal
+            modalBuyBtn.onclick = () => {
+                const phoneNumber = "5511999999999";
+                const message = encodeURIComponent(`Olá! Tenho interesse no produto: ${product.name}`);
+                window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+            };
+
+            // Configurar botão de Compartilhar
+            if (shareProductBtn) {
+                shareProductBtn.onclick = () => {
+                    const shareText = `Confira este produto da H3CBD: ${product.name} - ${product.price}. Acesse: ${window.location.href}`;
+                    navigator.clipboard.writeText(shareText).then(() => {
+                        showToast('Link copiado para a área de transferência!', 'Compartilhado');
+                    });
+                };
+            }
+
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        }
+
+        function closeModal() {
+            modal.classList.add('hidden');
+            document.body.style.overflow = ''; // Restore scrolling
+        }
+
+        closeModalBtn.addEventListener('click', closeModal);
+        closeModalFooterBtn.addEventListener('click', closeModal);
+        modalOverlay.addEventListener('click', closeModal);
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+                closeModal();
+            }
+        });
+
+        // Dark Mode Logic
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeToggleMobileBtn = document.getElementById('theme-toggle-mobile');
+        const html = document.documentElement;
+
+        // Check local storage or system preference
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            html.classList.add('dark');
+        } else {
+            html.classList.remove('dark');
+        }
+
+        function toggleTheme() {
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.theme = 'light';
+            } else {
+                html.classList.add('dark');
+                localStorage.theme = 'dark';
+            }
+        }
+
+        themeToggleBtn.addEventListener('click', toggleTheme);
+        themeToggleMobileBtn.addEventListener('click', toggleTheme);
+
+        // Guide Modal Logic
+        const guideModal = document.getElementById('guide-modal');
+        const openGuideBtn = document.getElementById('open-guide-btn');
+        const closeGuideBtn = document.getElementById('close-guide-btn');
+        const guideOverlay = document.getElementById('guide-overlay');
+        const printGuideBtn = document.getElementById('print-guide-btn');
+
+        function openGuide(e) {
+            e.preventDefault();
+            guideModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeGuide() {
+            guideModal.classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        if (openGuideBtn) openGuideBtn.addEventListener('click', openGuide);
+        if (closeGuideBtn) closeGuideBtn.addEventListener('click', closeGuide);
+        if (guideOverlay) guideOverlay.addEventListener('click', closeGuide);
+        
+        // Appointment Modal Logic
+        const appointmentModal = document.getElementById('appointment-modal');
+        const appointmentOverlay = document.getElementById('appointment-overlay');
+        const closeAppointmentBtn = document.getElementById('close-appointment-btn');
+        const appointmentForm = document.getElementById('appointment-form');
+        const doctorNameDisplay = document.getElementById('doctor-name-display');
+        let currentDoctor = '';
+
+        function openAppointmentModal(doctorName) {
+            currentDoctor = doctorName;
+            doctorNameDisplay.textContent = doctorName;
+            
+            // Carregar dados salvos do LocalStorage
+            const savedName = localStorage.getItem('h3cbd_patient_name');
+            const savedPhone = localStorage.getItem('h3cbd_patient_phone');
+            const rememberCheckbox = document.getElementById('remember-me');
+
+            if (savedName) {
+                document.getElementById('patient-name').value = savedName;
+                if (rememberCheckbox) rememberCheckbox.checked = true;
+            }
+            if (savedPhone) document.getElementById('patient-phone').value = savedPhone;
+
+            appointmentModal.classList.remove('hidden');
+            // Pequeno delay para permitir a transição de opacidade
+            setTimeout(() => {
+                appointmentModal.classList.remove('opacity-0');
+            }, 10);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeAppointmentModal() {
+            appointmentModal.classList.add('opacity-0');
+            setTimeout(() => {
+                appointmentModal.classList.add('hidden');
+                document.body.style.overflow = '';
+            }, 300);
+        }
+
+        // Event Delegation for Doctor Cards
+        const medicosSection = document.getElementById('medicos');
+        if (medicosSection) {
+            medicosSection.addEventListener('click', (e) => {
+                const btn = e.target.closest('.appointment-btn');
+                if (btn) {
+                    e.preventDefault();
+                    const doctorName = btn.dataset.doctor;
+                    openAppointmentModal(doctorName);
+                }
+            });
+        }
+
+        if (closeAppointmentBtn) closeAppointmentBtn.addEventListener('click', closeAppointmentModal);
+        if (appointmentOverlay) appointmentOverlay.addEventListener('click', closeAppointmentModal);
+        
+        // Doctor Registration Modal Logic
+        const doctorModal = document.getElementById('doctor-modal');
+        const openDoctorBtn = document.getElementById('open-doctor-modal-btn');
+        const closeDoctorBtn = document.getElementById('close-doctor-modal-btn');
+        const doctorOverlay = document.getElementById('doctor-overlay');
+        const doctorForm = document.getElementById('doctor-form');
+
+        function openDoctorModal() {
+            if (!doctorModal) return;
+            doctorModal.classList.remove('hidden');
+            setTimeout(() => {
+                doctorModal.classList.remove('opacity-0');
+            }, 10);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeDoctorModal() {
+            if (!doctorModal) return;
+            doctorModal.classList.add('opacity-0');
+            setTimeout(() => {
+                doctorModal.classList.add('hidden');
+                document.body.style.overflow = '';
+            }, 300);
+        }
+
+        if (openDoctorBtn) openDoctorBtn.addEventListener('click', openDoctorModal);
+        if (closeDoctorBtn) closeDoctorBtn.addEventListener('click', closeDoctorModal);
+        if (doctorOverlay) doctorOverlay.addEventListener('click', closeDoctorModal);
+
+        if (doctorForm) {
+            const docPhoneInput = document.getElementById('doctor-phone');
+            if (docPhoneInput) {
+                docPhoneInput.addEventListener('input', (e) => {
+                    let v = e.target.value.replace(/\D/g, "");
+                    if (v.length > 11) v = v.slice(0, 11);
+                    if (v.length > 10) v = v.replace(/^(\d{2})(\d{5})(\d{4})/, "($1) $2-$3");
+                    else if (v.length > 5) v = v.replace(/^(\d{2})(\d{4})(\d{0,4})/, "($1) $2-$3");
+                    else if (v.length > 2) v = v.replace(/^(\d{2})(\d{0,5})/, "($1) $2");
+                    else if (v.length > 0) v = v.replace(/^(\d*)/, "($1");
+                    e.target.value = v;
+                });
+            }
+
+            const crmInput = document.getElementById('doctor-crm');
+            if (crmInput) {
+                crmInput.addEventListener('input', (e) => {
+                    let v = e.target.value.toUpperCase();
+                    // Remove tudo que não é letra ou número
+                    v = v.replace(/[^0-9A-Z]/g, "");
+                    
+                    // Se houver números seguidos de letra (início da UF)
+                    if (/^\d+[A-Z]/.test(v)) {
+                        v = v.replace(/^(\d+)([A-Z].*)/, "$1/$2"); // Adiciona a barra
+                        const parts = v.split('/');
+                        if (parts.length > 1) {
+                            // Remove números após a barra e limita a 2 caracteres
+                            parts[1] = parts[1].replace(/[^A-Z]/g, "").substring(0, 2);
+                            v = parts.join('/');
+                        }
+                    } else {
+                        // Se não houver letras ainda, garante que só tenha números
+                        v = v.replace(/\D/g, "");
+                    }
+                    e.target.value = v;
+                });
+            }
+
+            doctorForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const name = document.getElementById('doctor-name').value;
+                const crmInput = document.getElementById('doctor-crm');
+                const crm = crmInput.value.trim();
+                const specialty = document.getElementById('doctor-specialty').value;
+                const phone = document.getElementById('doctor-phone').value;
+                const email = document.getElementById('doctor-email').value;
+
+                // Validação de CRM (Números/UF)
+                const crmRegex = /^\d+\/[a-zA-Z]{2}$/;
+                if (!crmRegex.test(crm)) {
+                    alert('Por favor, insira o CRM no formato correto: Números/UF (ex: 123456/SP)');
+                    crmInput.focus();
+                    return;
+                }
+
+                const phoneNumber = "5511999999999";
+                const message = encodeURIComponent(`Olá! Sou médico e gostaria de me cadastrar como parceiro.\n\nNome: ${name}\nCRM: ${crm}\nEspecialidade: ${specialty}\nTelefone: ${phone}\nE-mail: ${email}`);
+                
+                window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+                closeDoctorModal();
+                doctorForm.reset();
+            });
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !appointmentModal.classList.contains('hidden')) {
+                closeAppointmentModal();
+            }
+            if (e.key === 'Escape' && doctorModal && !doctorModal.classList.contains('hidden')) {
+                closeDoctorModal();
+            }
+        });
+
+        if (appointmentForm) {
+            const nameInput = document.getElementById('patient-name');
+            const nameError = document.getElementById('name-error');
+
+            if (nameInput) {
+                nameInput.addEventListener('input', () => {
+                    if (nameError) nameError.classList.add('hidden');
+                });
+            }
+
+            appointmentForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const name = nameInput.value.trim();
+                const phone = document.getElementById('patient-phone').value;
+                
+                if (!name) {
+                    appointmentForm.classList.add('animate-shake');
+                    nameInput.classList.add('border-red-500', 'focus:border-red-500', 'focus:ring-red-500');
+                    
+                    if (nameError) {
+                        nameError.textContent = 'Por favor, preencha o campo Nome.';
+                        nameError.classList.remove('hidden');
+                    }
+
+                    setTimeout(() => {
+                        appointmentForm.classList.remove('animate-shake');
+                        nameInput.classList.remove('border-red-500', 'focus:border-red-500', 'focus:ring-red-500');
+                    }, 500);
+                    nameInput.focus();
+                    return;
+                }
+                
+                // Lógica do Checkbox "Lembrar meus dados"
+                const rememberCheckbox = document.getElementById('remember-me');
+                if (rememberCheckbox && rememberCheckbox.checked) {
+                    localStorage.setItem('h3cbd_patient_name', name);
+                    localStorage.setItem('h3cbd_patient_phone', phone);
+                } else {
+                    localStorage.removeItem('h3cbd_patient_name');
+                    localStorage.removeItem('h3cbd_patient_phone');
+                }
+
+                const phoneNumber = "5511999999999";
+                const message = encodeURIComponent(`Olá! Gostaria de agendar uma consulta com ${currentDoctor}.\n\nNome: ${name}\nTelefone: ${phone}`);
+                
+                window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+                closeAppointmentModal();
+                appointmentForm.reset();
+            });
+        }
+
+        // Toast Notification Logic
+        const toast = document.getElementById('toast-notification');
+        let toastTimeout;
+
+        function showToast(message, title = 'Sucesso!') {
+            if (!toast) return;
+            
+            toast.querySelector('h4').textContent = title;
+            toast.querySelector('p').textContent = message;
+            
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            
+            if (toastTimeout) clearTimeout(toastTimeout);
+            
+            toastTimeout = setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        // Clear Data Button Logic
+        const clearDataBtn = document.getElementById('clear-data-btn');
+        if (clearDataBtn) {
+            clearDataBtn.addEventListener('click', () => {
+                localStorage.removeItem('h3cbd_patient_name');
+                localStorage.removeItem('h3cbd_patient_phone');
+                document.getElementById('patient-name').value = '';
+                document.getElementById('patient-phone').value = '';
+                const rememberCheckbox = document.getElementById('remember-me');
+                if (rememberCheckbox) rememberCheckbox.checked = false;
+                showToast('Seus dados foram removidos do dispositivo.');
+            });
+        }
+
+        // Copy Prescription Model Logic
+        const copyPrescriptionBtn = document.getElementById('copy-prescription-btn');
+        if (copyPrescriptionBtn) {
+            copyPrescriptionBtn.addEventListener('click', () => {
+                const textToCopy = "RECEITA MÉDICA\n\nPACIENTE: __________________________________________________\n\nUSO: ( ) ORAL  ( ) TÓPICO\n\nPRESCRIÇÃO:\n1. H3CBD [Nome do Produto] ______________________ frasco(s)\n   Posologia: Ingerir/Aplicar _____ vezes ao dia.\n\n\n_________________________, _____ de _______________ de 20____\n\n\n__________________________________________________\nAssinatura e Carimbo (CRM)";
+                
+                navigator.clipboard.writeText(textToCopy).then(() => {
+                    showToast('Modelo de receita copiado!', 'Copiado');
+                });
+            });
+        }
+
+        // Privacy & Terms Modals Logic
+        const privacyModal = document.getElementById('privacy-modal');
+        const termsModal = document.getElementById('terms-modal');
+        
+        function toggleModal(modal, show) {
+            if (show) {
+                modal.classList.remove('hidden');
+                setTimeout(() => modal.classList.remove('opacity-0'), 10);
+                document.body.style.overflow = 'hidden';
+            } else {
+                modal.classList.add('opacity-0');
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                    document.body.style.overflow = '';
+                }, 300);
+            }
+        }
+
+        // Privacy Listeners
+        document.getElementById('open-privacy-btn')?.addEventListener('click', (e) => { e.preventDefault(); toggleModal(privacyModal, true); });
+        document.getElementById('close-privacy-btn')?.addEventListener('click', () => toggleModal(privacyModal, false));
+        document.getElementById('accept-privacy-btn')?.addEventListener('click', () => toggleModal(privacyModal, false));
+        document.getElementById('privacy-overlay')?.addEventListener('click', () => toggleModal(privacyModal, false));
+
+        // Terms Listeners
+        document.getElementById('open-terms-btn')?.addEventListener('click', (e) => { e.preventDefault(); toggleModal(termsModal, true); });
+        document.getElementById('close-terms-btn')?.addEventListener('click', () => toggleModal(termsModal, false));
+        document.getElementById('accept-terms-btn')?.addEventListener('click', () => toggleModal(termsModal, false));
+        document.getElementById('terms-overlay')?.addEventListener('click', () => toggleModal(termsModal, false));
+
+        // Link Terms inside Doctor Modal
+        document.getElementById('link-terms-doctor')?.addEventListener('click', (e) => { e.preventDefault(); toggleModal(termsModal, true); });
+
+        // Print Terms Logic
+        document.getElementById('print-terms-btn')?.addEventListener('click', () => window.print());
+
+        // Close on Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                if (privacyModal && !privacyModal.classList.contains('hidden')) toggleModal(privacyModal, false);
+                if (termsModal && !termsModal.classList.contains('hidden')) toggleModal(termsModal, false);
+            }
+        });
+
+        // Phone Mask Logic
+        const phoneInput = document.getElementById('patient-phone');
+        if (phoneInput) {
+            phoneInput.addEventListener('input', (e) => {
+                let v = e.target.value.replace(/\D/g, "");
+                if (v.length > 11) v = v.slice(0, 11);
+                
+                if (v.length > 10) {
+                    v = v.replace(/^(\d{2})(\d{5})(\d{4})/, "($1) $2-$3");
+                } else if (v.length > 5) {
+                    v = v.replace(/^(\d{2})(\d{4})(\d{0,4})/, "($1) $2-$3");
+                } else if (v.length > 2) {
+                    v = v.replace(/^(\d{2})(\d{0,5})/, "($1) $2");
+                } else if (v.length > 0) {
+                    v = v.replace(/^(\d*)/, "($1");
+                }
+                e.target.value = v;
+            });
+        }
+
+        if (printGuideBtn) {
+            printGuideBtn.addEventListener('click', () => {
+                window.print();
+            });
+        }
+
+        // Cookie Consent Logic
+        const cookieBanner = document.getElementById('cookie-banner');
+        const acceptCookiesBtn = document.getElementById('accept-cookies');
+        const declineCookiesBtn = document.getElementById('decline-cookies');
+        const cookieSettingsBtn = document.getElementById('cookie-settings-btn');
+
+        function hideCookieBanner() {
+            cookieBanner.classList.add('translate-y-full');
+            if (cookieSettingsBtn) {
+                cookieSettingsBtn.classList.remove('hidden');
+                cookieSettingsBtn.classList.add('animate-bounce');
+                setTimeout(() => {
+                    cookieSettingsBtn.classList.remove('animate-bounce');
+                }, 3000);
+            }
+        }
+
+        function showCookieBanner() {
+            cookieBanner.classList.remove('translate-y-full');
+            if (cookieSettingsBtn) cookieSettingsBtn.classList.add('hidden');
+        }
+
+        // Função para carregar scripts de terceiros (Cookies)
+        function activateTracking() {
+            // Evita carregamento duplicado
+            if (window.ga_initialized) return;
+            window.ga_initialized = true;
+
+            console.log('Consentimento aceito: Carregando cookies de rastreamento...');
+            
+            // Google Analytics (GA4) - Configuração Dinâmica
+            const gaId = 'G-SEU-ID-AQUI'; // Substitua 'G-SEU-ID-AQUI' pelo seu ID real (ex: G-ABC123456)
+
+            // 1. Injeta o script do Google Tag Manager
+            const script = document.createElement('script');
+            script.async = true;
+            script.src = `https://www.googletagmanager.com/gtag/js?id=${gaId}`;
+            document.head.appendChild(script);
+
+            // 2. Inicializa o dataLayer e configura o GA
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', gaId);
+        }
+
+        window.addEventListener('load', () => {
+            const consent = localStorage.getItem('cookie_consent');
+
+            // Se já aceitou antes, ativa os cookies imediatamente
+            if (consent === 'true') {
+                activateTracking();
+            } 
+            
+            // Se já decidiu (aceitou ou recusou), mostra o botão de configurações
+            if (consent) {
+                if (cookieSettingsBtn) cookieSettingsBtn.classList.remove('hidden');
+            }
+            // Se ainda não decidiu, mostra o banner após delay
+            else {
+                setTimeout(() => {
+                    showCookieBanner();
+                }, 2500); // Show after a delay
+            }
+        });
+
+        acceptCookiesBtn.addEventListener('click', () => {
+            localStorage.setItem('cookie_consent', 'true');
+            activateTracking(); // Ativa imediatamente ao clicar
+            hideCookieBanner();
+        });
+
+        declineCookiesBtn.addEventListener('click', () => {
+            localStorage.setItem('cookie_consent', 'false');
+            
+            // Limpar cookies (tentativa de remover cookies de rastreamento)
+            const cookies = document.cookie.split(";");
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i];
+                const eqPos = cookie.indexOf("=");
+                const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+                document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
+            }
+
+            hideCookieBanner();
+            
+            // Se o rastreamento estava ativo, recarrega a página para garantir
+            if (window.ga_initialized) {
+                window.location.reload();
+            }
+        });
+
+        if (cookieSettingsBtn) {
+            cookieSettingsBtn.addEventListener('click', () => {
+                showCookieBanner();
+            });
+        }
+
+        // Hero Parallax Effect
+        const heroSection = document.getElementById('home');
+        let ticking = false;
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    const scrollPosition = window.scrollY;
+                    if (scrollPosition <= heroSection.offsetHeight) {
+                        heroSection.style.backgroundPosition = `center ${scrollPosition * 0.5}px`;
+                    }
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+
+        // Newsletter Validation
+        function validateNewsletter(event) {
+            event.preventDefault();
+            const emailInput = event.target.querySelector('input[type="email"]');
+            const email = emailInput.value;
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (emailRegex.test(email)) {
+                const phoneNumber = "5511999999999"; // Número da empresa
+                const message = encodeURIComponent(`Olá! Gostaria de mais informações sobre os produtos H3CBD. Meu e-mail é: ${email}`);
+                window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+                emailInput.value = '';
+            } else {
+                alert('Por favor, insira um e-mail válido.');
+            }
+        }
+
+        // Blog Modal Logic
+        const blogData = [
+            {
+                title: "CBD e Ansiedade: O que diz a ciência?",
+                date: "15 Out, 2023",
+                category: "Saúde Mental",
+                tags: ["Ansiedade", "Ciência", "BemEstar", "SaúdeMental"],
+                image: "https://images.unsplash.com/photo-1544367563-12123d8965cd?q=80&w=800&auto=format&fit=crop",
+                content: `<p>A ansiedade é uma das condições de saúde mental mais comuns no mundo moderno. Estudos recentes indicam que o Canabidiol (CBD) pode oferecer uma alternativa natural promissora para o gerenciamento dos sintomas.</p>
+                <h4 class="font-bold text-gray-900 dark:text-white text-xl mt-6 mb-3">Como funciona?</h4>
+                <p>O CBD interage com o sistema endocanabinoide do corpo, especificamente com os receptores CB1 e CB2, além de influenciar os receptores de serotonina (5-HT1A), que regulam o humor e o estresse.</p>
+                <h4 class="font-bold text-gray-900 dark:text-white text-xl mt-6 mb-3">Evidências Clínicas</h4>
+                <p>Uma pesquisa publicada no <em>Journal of Psychopharmacology</em> demonstrou que o CBD reduziu significativamente a ansiedade em pacientes com Transtorno de Ansiedade Social. Outros estudos sugerem eficácia no tratamento de estresse pós-traumático e insônia relacionada à ansiedade.</p>`
+            },
+            {
+                title: "Guia Completo: CBD para Dores Crônicas",
+                date: "22 Out, 2023",
+                category: "Bem-estar Físico",
+                tags: ["DorCrônica", "Inflamação", "Recuperação", "SemDor"],
+                image: "https://images.unsplash.com/photo-1552674605-469523170273?q=80&w=800&auto=format&fit=crop",
+                content: `<p>A dor crônica afeta milhões de pessoas e muitas vezes os tratamentos convencionais trazem efeitos colaterais indesejados. O CBD surge como um potente anti-inflamatório natural.</p>
+                <h4 class="font-bold text-gray-900 dark:text-white text-xl mt-6 mb-3">Mecanismo de Ação</h4>
+                <p>O CBD inibe a absorção de anandamida, um composto associado à regulação da dor. Com níveis mais altos de anandamida na corrente sanguínea, a percepção de dor pode ser reduzida.</p>
+                <h4 class="font-bold text-gray-900 dark:text-white text-xl mt-6 mb-3">Aplicações</h4>
+                <p>É frequentemente indicado para artrite, fibromialgia, dores nas costas e recuperação muscular em atletas. O uso tópico (cremes) oferece alívio localizado, enquanto óleos sublinguais atuam de forma sistêmica.</p>`
+            },
+            {
+                title: "CBD na Rotina de Skincare",
+                date: "05 Nov, 2023",
+                category: "Estética",
+                tags: ["Skincare", "Beleza", "Antioxidante", "PeleSaudável"],
+                image: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=800&auto=format&fit=crop",
+                content: `<p>O mercado de beleza descobriu o CBD e não é por acaso. Suas propriedades antioxidantes e anti-inflamatórias o tornam um ingrediente poderoso para a saúde da pele.</p>
+                <h4 class="font-bold text-gray-900 dark:text-white text-xl mt-6 mb-3">Benefícios para a Pele</h4>
+                <ul class="list-disc pl-5 space-y-2 mb-4">
+                    <li><strong>Acne:</strong> Ajuda a regular a produção de sebo e reduz a inflamação das espinhas.</li>
+                    <li><strong>Envelhecimento:</strong> Combate radicais livres, prevenindo rugas e linhas finas.</li>
+                    <li><strong>Sensibilidade:</strong> Acalma peles com rosácea, eczema ou psoríase.</li>
+                </ul>
+                <p>Incorporar um sérum ou creme com CBD na sua rotina noturna pode transformar a textura e o brilho da sua pele.</p>`
+            }
+        ];
+
+        const blogModal = document.getElementById('blog-modal');
+        const blogOverlay = document.getElementById('blog-overlay');
+        const closeBlogBtn = document.getElementById('close-blog-btn');
+        const blogBtns = document.querySelectorAll('.open-blog-btn');
+        const blogProgressBar = document.getElementById('blog-progress-bar');
+        let currentBlogTitle = '';
+
+        function openBlogModal(index) {
+            const post = blogData[index];
+            currentBlogTitle = post.title;
+            document.getElementById('blog-modal-img').src = post.image;
+            document.getElementById('blog-modal-category').textContent = post.category;
+            document.getElementById('blog-modal-date').innerHTML = `<i class="fa-regular fa-calendar mr-2"></i>${post.date}`;
+            document.getElementById('blog-modal-title').textContent = post.title;
+            
+            // Render Tags
+            const tagsContainer = document.getElementById('blog-modal-tags');
+            if (tagsContainer) {
+                tagsContainer.innerHTML = '';
+                if (post.tags) {
+                    post.tags.forEach(tag => {
+                        const tagBtn = document.createElement('button');
+                        tagBtn.className = 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-3 py-1 rounded-full text-xs font-bold hover:bg-brand hover:text-white transition cursor-pointer';
+                        tagBtn.textContent = `#${tag}`;
+                        tagsContainer.appendChild(tagBtn);
+                    });
+                }
+            }
+
+            document.getElementById('blog-modal-content').innerHTML = post.content;
+            
+            // Reset Progress Bar
+            if (blogProgressBar) blogProgressBar.style.width = '0%';
+
+            // Related Articles Logic
+            const relatedContainer = document.getElementById('blog-related-container');
+            if (relatedContainer) {
+                relatedContainer.innerHTML = '';
+                // Filter current post out and take 2
+                const relatedPosts = blogData
+                    .map((p, i) => ({ ...p, originalIndex: i }))
+                    .filter((p, i) => i != index) // Exclude current
+                    .slice(0, 2); // Take 2
+
+                relatedPosts.forEach(p => {
+                    const card = `
+                        <div class="group cursor-pointer related-article-card bg-gray-50 dark:bg-gray-700 rounded-xl p-3 flex gap-4 items-center hover:bg-gray-100 dark:hover:bg-gray-600 transition border border-gray-100 dark:border-gray-600" data-index="${p.originalIndex}">
+                            <div class="h-16 w-16 flex-shrink-0 rounded-lg overflow-hidden">
+                                <img src="${p.image}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-gray-900 dark:text-white text-sm group-hover:text-brand transition line-clamp-2">${p.title}</h5>
+                                <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">${p.category}</p>
+                            </div>
+                        </div>
+                    `;
+                    relatedContainer.insertAdjacentHTML('beforeend', card);
+                });
+
+                // Add click listeners to related cards
+                relatedContainer.querySelectorAll('.related-article-card').forEach(card => {
+                    card.addEventListener('click', () => {
+                        blogModal.scrollTo({ top: 0, behavior: 'smooth' });
+                        openBlogModal(card.dataset.index);
+                    });
+                });
+            }
+            
+            toggleModal(blogModal, true);
+        }
+
+        blogBtns.forEach(btn => {
+            btn.addEventListener('click', () => openBlogModal(btn.dataset.index));
+        });
+
+        if (closeBlogBtn) closeBlogBtn.addEventListener('click', () => toggleModal(blogModal, false));
+        if (blogOverlay) blogOverlay.addEventListener('click', () => toggleModal(blogModal, false));
+
+        // Blog Scroll Progress Logic
+        if (blogModal && blogProgressBar) {
+            blogModal.addEventListener('scroll', () => {
+                const scrollTop = blogModal.scrollTop;
+                const scrollHeight = blogModal.scrollHeight;
+                const clientHeight = blogModal.clientHeight;
+                const scrolled = (scrollTop / (scrollHeight - clientHeight)) * 100;
+                blogProgressBar.style.width = `${scrolled}%`;
+            });
+        }
+
+        // Blog Share Logic
+        document.getElementById('share-blog-whatsapp')?.addEventListener('click', () => {
+            const text = encodeURIComponent(`Confira este artigo: ${currentBlogTitle}\n${window.location.href}`);
+            window.open(`https://wa.me/?text=${text}`, '_blank');
+        });
+
+        document.getElementById('share-blog-facebook')?.addEventListener('click', () => {
+            const url = encodeURIComponent(window.location.href);
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
+        });
+
+        document.getElementById('share-blog-linkedin')?.addEventListener('click', () => {
+            const url = encodeURIComponent(window.location.href);
+            window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, '_blank');
+        });
+    </script>
+</body>
+</html> document.getElementById('share-blog-whatsapp')?.addEventListener('click', () => {
+            const text = encodeURIComponent(`Confira este artigo: ${currentBlogTitle}\n${window.location.href}`);
+            window.open(`https://wa.me/?text=${text}`, '_blank');
+        });
+
+        document.getElementById('share-blog-facebook')?.addEventListener('click', () => {
+            const url = encodeURIComponent(window.location.href);
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
+        });
+
+        document.getElementById('share-blog-linkedin')?.addEventListener('click', () => {
+            const url = encodeURIComponent(window.location.href);
+            window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, '_blank');
+        });
+    </script>
+</body>
+</html>
